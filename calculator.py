@@ -55,7 +55,7 @@ def Login():
         if loginCheck(attemptUsername, attemptPassword):
             tkinter.messagebox.showinfo(title="Beware", message="Calculator not fully operational, there may be bugs.")
             screenLogin.destroy()
-            rekenmachine()
+            calculator()
         else:
             tkinter.messagebox.showerror(title="Error", message="Username and password did not match.")
             usernameEntry.delete("0", "end")
@@ -73,60 +73,97 @@ def Login():
     buttonLogin=tkinter.ttk.Button(screenLogin, text="Log in", command=validateLogin, width=10).place(x=120, y=110)
 
 # rekenmachine
-def rekenmachine(): #Organise def()'s to be with respective buttons
-    def plus():
-        scherm1.insert("end","+")
-    def min():
-        scherm1.insert("end","-")        
-    def keer():
-        scherm1.insert("end","*")        
-    def delen():
-        scherm1.insert("end","/")
-    def een():
-        scherm1.insert("end","1")        
-    def twee():
-        scherm1.insert("end","2")        
-    def drie():
-        scherm1.insert("end","3")        
-    def vier():
-        scherm1.insert("end","4")        
-    def vijf():
-        scherm1.insert("end","5")        
-    def zes():
-        scherm1.insert("end","6")        
-    def zeven():
-        scherm1.insert("end","7")        
-    def acht():
-        scherm1.insert("end","8")        
-    def negen():
-        scherm1.insert("end","9")        
-    def nul():
-        scherm1.insert("end","0")
-    def clear():
-        scherm1.delete("0", "end")
-    def punt():
-        scherm1.insert("end", ".")
-    def haakje_openen():
-        scherm1.insert("end", "(")
-    def haakje_sluiten():
-        scherm1.insert("end", ")")
-    def macht():
-        scherm1.insert("end", "**")
-    def log():
-        scherm1.insert("end", "math.log10(")
-    def sin():
-        scherm1.insert("end", "math.sin(")
-    def cos():
-        scherm1.insert("end", "math.cos(")
-    def tan():
-        scherm1.insert("end", "math.tan(")
-    def backspace():
-        inhoud_scherm1 = scherm1.get()
-        inhoud_scherm1 = inhoud_scherm1[:-1]
-        scherm1.delete("0", "end")
-        scherm1.insert("end", inhoud_scherm1)
+def calculator(): #Organise def()'s to be with respective buttons
+
+    screenCalculator = Tk()
+    screenCalculator.title("Rekenmachine")
+    screenCalculator.geometry("195x510+550+200")
+    windowInputCalculator=tkinter.Entry(screenCalculator, width=29)
+    windowInputCalculator.place(x=10, y=10)
+    tkinter.ttk.Label(screenCalculator, text="Calculator of UltraPuPower1, inspired by the calculator from 刘键明").place(x=300, y=500)
+    tkinter.ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV0.1", font=["Verdana", "7"]).place(x=0, y=550)
+    tkinter.ttk.Separator(screenCalculator, orient=VERTICAL).place(x=195, y=55, height=110, width=5)
+    tkinter.ttk.Separator(screenCalculator, orient=HORIZONTAL).place(x=0, y=165, height=5, width=195)
+    tkinter.ttk.Separator(screenCalculator, orient=HORIZONTAL).place(x=0, y=55, height=5, width=195)
+
+    def actionOne(): windowInputCalculator.insert("end","1")
+    buttonOne=tkinter.ttk.Button(screenCalculator, text="1", command=actionOne, width=3).place(x=10, y=110)
+    
+    def actionTwo(): windowInputCalculator.insert("end","2")
+    buttonTwo=tkinter.ttk.Button(screenCalculator, text="2", command=actionTwo, width=3).place(x=35, y=110)
+
+    def actionThree(): windowInputCalculator.insert("end","3")
+    buttonThree=tkinter.ttk.Button(screenCalculator, text="3", command=actionThree, width=3).place(x=60, y=110)
+
+    def actionFour(): windowInputCalculator.insert("end","4")
+    buttonFour=tkinter.ttk.Button(screenCalculator, text="4", command=actionFour, width=3).place(x=10, y=85)
+
+    def actionFive(): windowInputCalculator.insert("end","5")
+    buttonFive=tkinter.ttk.Button(screenCalculator, text="5", command=actionFive, width=3).place(x=35, y=85)
+
+    def actionSix(): windowInputCalculator.insert("end","6")
+    buttonSix=tkinter.ttk.Button(screenCalculator, text="6", command=actionSix, width=3).place(x=60, y=85)
+
+    def actionSeven(): windowInputCalculator.insert("end","7")
+    buttonSeven=tkinter.ttk.Button(screenCalculator, text="7", command=actionSeven, width=3).place(x=10, y=60)
+
+    def actionEight(): windowInputCalculator.insert("end","8")
+    buttonEight=tkinter.ttk.Button(screenCalculator, text="8", command=actionEight, width=3).place(x=35, y=60)
+
+    def actionNine(): windowInputCalculator.insert("end","9")
+    buttonNine=tkinter.ttk.Button(screenCalculator, text="9", command=actionNine, width=3).place(x=60, y=60)
+
+    def actionZero(): windowInputCalculator.insert("end","0")
+    buttonZero=tkinter.ttk.Button(screenCalculator, text="0", command=actionZero, width=7).place(x=10, y=135)
+
+    def actionAdd(): windowInputCalculator.insert("end","+")
+    buttonAdd = tkinter.ttk.Button(screenCalculator, text="+", command=actionAdd, width=3).place(x=85, y=110)
+
+    def actionSubtract(): windowInputCalculator.insert("end","-")
+    buttonSubtract = tkinter.ttk.Button(screenCalculator, text="-", command=actionSubtract, width=3).place(x=110, y=110)
+
+    def actionMultiply(): windowInputCalculator.insert("end","*")
+    buttonMultiply = tkinter.ttk.Button(screenCalculator, text="*", command=actionMultiply, width=3).place(x=85, y=85)
+
+    def actionDivide(): windowInputCalculator.insert("end","/")
+    buttonDivide = tkinter.ttk.Button(screenCalculator, text="/", command=actionDivide, width=3).place(x=110, y=85)
+
+    def actionClear(): windowInputCalculator.delete("0", "end")
+    buttonClear=tkinter.ttk.Button(screenCalculator, text="C", command=actionClear, width=3).place(x=85, y=60)
+
+    def actionDot(): windowInputCalculator.insert("end", ".")
+    buttonDot=tkinter.ttk.Button(screenCalculator, text=".", command=actionDot, width=3).place(x=60, y=135)
+
+    def actionOpenParenthesis(): windowInputCalculator.insert("end", "(")
+    buttonOpenParenthesis=tkinter.ttk.Button(screenCalculator, text="(", command=actionOpenParenthesis, width=3).place(x=135, y=60)
+
+    def actionCloseParenthesis(): windowInputCalculator.insert("end", ")")
+    buttonCloseParenthesis=tkinter.ttk.Button(screenCalculator, text=")", command=actionCloseParenthesis, width=3).place(x=160, y=60)
+
+    def actionPower(): windowInputCalculator.insert("end", "**")
+    buttonPower=tkinter.ttk.Button(screenCalculator, text="^", command=actionPower, width=3).place(x=135, y=85)
+
+    def actionLog(): windowInputCalculator.insert("end", "math.log10(")
+    buttonLog=tkinter.ttk.Button(screenCalculator, text="log", command=actionLog, width=3).place(x=160, y=85)
+
+    def actionSine(): windowInputCalculator.insert("end", "math.sin(")
+    buttonSine=tkinter.ttk.Button(screenCalculator, text="sin", command=actionSine, width=3).place(x=135, y=110)
+
+    def actionCosine(): windowInputCalculator.insert("end", "math.cos(")
+    buttonCosine=tkinter.ttk.Button(screenCalculator, text="cos", command=actionCosine, width=3).place(x=160, y=110)
+
+    def actionTangent(): windowInputCalculator.insert("end", "math.tan(")
+    buttonTangent=tkinter.ttk.Button(screenCalculator, text="tan", command=actionTangent, width=3).place(x=160, y=135)
+    
+    def actionBackspace():
+        inhoud_windowInputCalculator = windowInputCalculator.get()
+        inhoud_windowInputCalculator = inhoud_windowInputCalculator[:-1]
+        windowInputCalculator.delete("0", "end")
+        windowInputCalculator.insert("end", inhoud_windowInputCalculator)
+    buttonBackspace=tkinter.ttk.Button(screenCalculator, text="del", command=actionBackspace, width=3).place(x=110, y=60)
+
     def berekenen():
-        input=scherm1.get()
+        input=windowInputCalculator.get()
         try:
             ans_output = eval(input)
             output = float(eval(input))
@@ -170,7 +207,7 @@ def rekenmachine(): #Organise def()'s to be with respective buttons
                     b = "Error: te klein getal"
                 else:
                     n = str(n)
-                    a = output+"x×10^"+n
+                    a = output+"×10^"+n
                     b = "= "+a
             else:
                 a = str(output)
@@ -178,212 +215,178 @@ def rekenmachine(): #Organise def()'s to be with respective buttons
         except:
             b = "Error"
             ans_output = 0
-        scherm2=tkinter.ttk.Label(venster_rekenmachine, text=b+"                                               ")
+        scherm2=tkinter.ttk.Label(screenCalculator, text=b+"                                               ")
         scherm2.place(x=10, y=35)
         if b != "Error" or b!= "Error: te klein getal" or b!= "Error, te groot getal":
             ans_var.clear()
             ans_var.insert(0, ans_output)
-    def ans():
-        scherm1.insert("end", ans_var)
+    buttonCalculate=tkinter.ttk.Button(screenCalculator, text="=", command=berekenen, width=7).place(x=85, y=135)
 
-    venster_rekenmachine = Tk()
-    venster_rekenmachine.title("Rekenmachine")
-    venster_rekenmachine.geometry("195x510+550+200")
-    scherm1=tkinter.Entry(venster_rekenmachine, width=29)
-    scherm1.place(x=10, y=10)
-    buttonAdd = tkinter.ttk.Button(venster_rekenmachine, text="+", command=plus, width=3).place(x=85, y=110)
-    buttonSubtract = tkinter.ttk.Button(venster_rekenmachine, text="-", command=min, width=3).place(x=110, y=110)
-    buttonMultiply = tkinter.ttk.Button(venster_rekenmachine, text="*", command=keer, width=3).place(x=85, y=85)
-    buttonDivide = tkinter.ttk.Button(venster_rekenmachine, text="/", command=delen, width=3).place(x=110, y=85)
-    knop_1=tkinter.ttk.Button(venster_rekenmachine, text="1", command=een, width=3).place(x=10, y=110)
-    knop_2=tkinter.ttk.Button(venster_rekenmachine, text="2", command=twee, width=3).place(x=35, y=110)
-    knop_3=tkinter.ttk.Button(venster_rekenmachine, text="3", command=drie, width=3).place(x=60, y=110)
-    knop_4=tkinter.ttk.Button(venster_rekenmachine, text="4", command=vier, width=3).place(x=10, y=85)
-    knop_5=tkinter.ttk.Button(venster_rekenmachine, text="5", command=vijf, width=3).place(x=35, y=85)
-    knop_6=tkinter.ttk.Button(venster_rekenmachine, text="6", command=zes, width=3).place(x=60, y=85)
-    knop_7=tkinter.ttk.Button(venster_rekenmachine, text="7", command=zeven, width=3).place(x=10, y=60)
-    knop_8=tkinter.ttk.Button(venster_rekenmachine, text="8", command=acht, width=3).place(x=35, y=60)
-    knop_9=tkinter.ttk.Button(venster_rekenmachine, text="9", command=negen, width=3).place(x=60, y=60)
-    knop_0=tkinter.ttk.Button(venster_rekenmachine, text="0", command=nul, width=7).place(x=10, y=135)
-    buttonDot=tkinter.ttk.Button(venster_rekenmachine, text=".", command=punt, width=3).place(x=60, y=135)
-    buttonClear=tkinter.ttk.Button(venster_rekenmachine, text="C", command=clear, width=3).place(x=85, y=60)
-    buttonBackspace=tkinter.ttk.Button(venster_rekenmachine, text="del", command=backspace, width=3).place(x=110, y=60)
-    buttonCalculate=tkinter.ttk.Button(venster_rekenmachine, text="=", command=berekenen, width=7).place(x=85, y=135)
-    buttonPower=tkinter.ttk.Button(venster_rekenmachine, text="^", command=macht, width=3).place(x=135, y=85)
-    buttonOpenParenthesis=tkinter.ttk.Button(venster_rekenmachine, text="(", command=haakje_openen, width=3).place(x=135, y=60)
-    buttonCloseParenthesis=tkinter.ttk.Button(venster_rekenmachine, text=")", command=haakje_sluiten, width=3).place(x=160, y=60)
-    buttonLog=tkinter.ttk.Button(venster_rekenmachine, text="log", command=log, width=3).place(x=160, y=85)
-    buttonSine=tkinter.ttk.Button(venster_rekenmachine, text="sin", command=sin, width=3).place(x=135, y=110)
-    buttonCosine=tkinter.ttk.Button(venster_rekenmachine, text="cos", command=cos, width=3).place(x=160, y=110)
-    buttonAns=tkinter.ttk.Button(venster_rekenmachine, text="ans", command=ans, width=3).place(x=135, y=135)
-    buttonTangent=tkinter.ttk.Button(venster_rekenmachine, text="tan", command=tan, width=3).place(x=160, y=135)
-    tkinter.ttk.Label(venster_rekenmachine, text="Rekenmachine van 刘键明").place(x=300, y=500)
-    tkinter.ttk.Label(venster_rekenmachine, text="De antwoorden zijn mogelijk onjuist.\nGebruik op eigen risico.\nV1.1", font=["Verdana", "7"]).place(x=0, y=550)
-    tkinter.ttk.Separator(venster_rekenmachine, orient=VERTICAL).place(x=195, y=55, height=110, width=5)
-    tkinter.ttk.Separator(venster_rekenmachine, orient=HORIZONTAL).place(x=0, y=165, height=5, width=195)
-    tkinter.ttk.Separator(venster_rekenmachine, orient=HORIZONTAL).place(x=0, y=55, height=5, width=195)
+    def ans():
+        windowInputCalculator.insert("end", ans_var)
+    buttonAns=tkinter.ttk.Button(screenCalculator, text="ans", command=ans, width=3).place(x=135, y=135)
 
     def anstoA():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             A.clear()
             A.insert(0, "0")
         else:
             A.clear()
             A.insert(0, ans_output2)
-##        toon_A=tkinter.ttk.Label(venster_rekenmachine, text=["A", "=", A], font=["Verdana", "11"]).place(x=85, y=200)
+##        toon_A=tkinter.ttk.Label(screenCalculator, text=["A", "=", A], font=["Verdana", "11"]).place(x=85, y=200)
     def anstoB():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             B.clear()
             B.insert(0, "0")
         else:
             B.clear()
             B.insert(0, ans_output2)
-##        toon_B=tkinter.ttk.Label(venster_rekenmachine, text=["B", "=", B], font=["Verdana", "11"]).place(x=85, y=225)
+##        toon_B=tkinter.ttk.Label(screenCalculator, text=["B", "=", B], font=["Verdana", "11"]).place(x=85, y=225)
     def anstoC():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             C.clear()
             C.insert(0, "0")
         else:
             C.clear()
             C.insert(0, ans_output2)
-##        toon_C=tkinter.ttk.Label(venster_rekenmachine, text=["C", "=", C], font=["Verdana", "11"]).place(x=85, y=250)
+##        toon_C=tkinter.ttk.Label(screenCalculator, text=["C", "=", C], font=["Verdana", "11"]).place(x=85, y=250)
     def anstoD():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             D.clear()
             D.insert(0, "0")
         else:
             D.clear()
             D.insert(0, ans_output2)
-##        toon_D=tkinter.ttk.Label(venster_rekenmachine, text=["D", "=", D], font=["Verdana", "11"]).place(x=85, y=275)
+##        toon_D=tkinter.ttk.Label(screenCalculator, text=["D", "=", D], font=["Verdana", "11"]).place(x=85, y=275)
     def anstoE():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             E.clear()
             E.insert(0, "0")
         else:
             E.clear()
             E.insert(0, ans_output2)
-##        toon_E=tkinter.ttk.Label(venster_rekenmachine, text=["E", "=", E], font=["Verdana", "11"]).place(x=85, y=300)
+##        toon_E=tkinter.ttk.Label(screenCalculator, text=["E", "=", E], font=["Verdana", "11"]).place(x=85, y=300)
     def anstoF():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             F.clear()
             F.insert(0, "0")
         else:
             F.clear()
             F.insert(0, ans_output2)
-##        toon_F=tkinter.ttk.Label(venster_rekenmachine, text=["F", "=", F], font=["Verdana", "11"]).place(x=85, y=325)
+##        toon_F=tkinter.ttk.Label(screenCalculator, text=["F", "=", F], font=["Verdana", "11"]).place(x=85, y=325)
     def anstoP():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             P.clear()
             P.insert(0, "0")
         else:
             P.clear()
             P.insert(0, ans_output2)
-##        toon_P=tkinter.ttk.Label(venster_rekenmachine, text=["P", "=", P], font=["Verdana", "11"]).place(x=85, y=350)
+##        toon_P=tkinter.ttk.Label(screenCalculator, text=["P", "=", P], font=["Verdana", "11"]).place(x=85, y=350)
     def anstoQ():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             Q.clear()
             Q.insert(0, "0")
         else:
             Q.clear()
             Q.insert(0, ans_output2)
-##        toon_Q=tkinter.ttk.Label(venster_rekenmachine, text=["Q", "=", Q], font=["Verdana", "11"]).place(x=85, y=375)
+##        toon_Q=tkinter.ttk.Label(screenCalculator, text=["Q", "=", Q], font=["Verdana", "11"]).place(x=85, y=375)
     def anstoR():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             R.clear()
             R.insert(0, "0")
         else:
             R.clear()
             R.insert(0, ans_output2)
-##        toon_R=tkinter.ttk.Label(venster_rekenmachine, text=["R", "=", R], font=["Verdana", "11"]).place(x=85, y=400)
+##        toon_R=tkinter.ttk.Label(screenCalculator, text=["R", "=", R], font=["Verdana", "11"]).place(x=85, y=400)
     def anstoX():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             X.clear()
             X.insert(0, "0")
         else:
             X.clear()
             X.insert(0, ans_output2)
-##        toon_X=tkinter.ttk.Label(venster_rekenmachine, text=["X", "=", X], font=["Verdana", "11"]).place(x=85, y=425)
+##        toon_X=tkinter.ttk.Label(screenCalculator, text=["X", "=", X], font=["Verdana", "11"]).place(x=85, y=425)
     def anstoY():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             Y.clear()
             Y.insert(0, "0")
         else:
             Y.clear()
             Y.insert(0, ans_output2)
-##        toon_Y=tkinter.ttk.Label(venster_rekenmachine, text=["Y", "=", Y], font=["Verdana", "11"]).place(x=85, y=450)
+##        toon_Y=tkinter.ttk.Label(screenCalculator, text=["Y", "=", Y], font=["Verdana", "11"]).place(x=85, y=450)
     def anstoZ():
-        ans_output2 = eval(scherm1.get())
+        ans_output2 = eval(windowInputCalculator.get())
         if ans_output2 >= 10000000000 or abs(ans_output2) < 0.001 and ans_output2 != 0:
             Z.clear()
             Z.insert(0, "0")
         else:
             Z.clear()
             Z.insert(0, ans_output2)
-##        toon_Z=tkinter.ttk.Label(venster_rekenmachine, text=["Z", "=", Z], font=["Verdana", "11"]).place(x=85, y=475)
+##        toon_Z=tkinter.ttk.Label(screenCalculator, text=["Z", "=", Z], font=["Verdana", "11"]).place(x=85, y=475)
 
-    tkinter.ttk.Label(venster_rekenmachine, text="Variabelen", font=["Arial", "12"]).place(x=10, y=175)
-    knop_anstoA=tkinter.ttk.Button(venster_rekenmachine, text="Ans=A", command=anstoA, width=7).place(x=10, y=200)
-    knop_anstoB=tkinter.ttk.Button(venster_rekenmachine, text="Ans=B", command=anstoB, width=7).place(x=10, y=225)
-    knop_anstoC=tkinter.ttk.Button(venster_rekenmachine, text="Ans=C", command=anstoC, width=7).place(x=10, y=250)
-    knop_anstoD=tkinter.ttk.Button(venster_rekenmachine, text="Ans=D", command=anstoD, width=7).place(x=10, y=275)
-    knop_anstoE=tkinter.ttk.Button(venster_rekenmachine, text="Ans=E", command=anstoE, width=7).place(x=10, y=300)
-    knop_anstoF=tkinter.ttk.Button(venster_rekenmachine, text="Ans=F", command=anstoF, width=7).place(x=10, y=325)
-    knop_anstoP=tkinter.ttk.Button(venster_rekenmachine, text="Ans=P", command=anstoP, width=7).place(x=10, y=350)
-    knop_anstoQ=tkinter.ttk.Button(venster_rekenmachine, text="Ans=Q", command=anstoQ, width=7).place(x=10, y=375)
-    knop_anstoR=tkinter.ttk.Button(venster_rekenmachine, text="Ans=R", command=anstoR, width=7).place(x=10, y=400)
-    knop_anstoX=tkinter.ttk.Button(venster_rekenmachine, text="Ans=X", command=anstoX, width=7).place(x=10, y=425)
-    knop_anstoY=tkinter.ttk.Button(venster_rekenmachine, text="Ans=Y", command=anstoY, width=7).place(x=10, y=450)
-    knop_anstoZ=tkinter.ttk.Button(venster_rekenmachine, text="Ans=Z", command=anstoZ, width=7).place(x=10, y=475)
+    tkinter.ttk.Label(screenCalculator, text="Variabelen", font=["Arial", "12"]).place(x=10, y=175)
+    knop_anstoA=tkinter.ttk.Button(screenCalculator, text="Ans=A", command=anstoA, width=7).place(x=10, y=200)
+    knop_anstoB=tkinter.ttk.Button(screenCalculator, text="Ans=B", command=anstoB, width=7).place(x=10, y=225)
+    knop_anstoC=tkinter.ttk.Button(screenCalculator, text="Ans=C", command=anstoC, width=7).place(x=10, y=250)
+    knop_anstoD=tkinter.ttk.Button(screenCalculator, text="Ans=D", command=anstoD, width=7).place(x=10, y=275)
+    knop_anstoE=tkinter.ttk.Button(screenCalculator, text="Ans=E", command=anstoE, width=7).place(x=10, y=300)
+    knop_anstoF=tkinter.ttk.Button(screenCalculator, text="Ans=F", command=anstoF, width=7).place(x=10, y=325)
+    knop_anstoP=tkinter.ttk.Button(screenCalculator, text="Ans=P", command=anstoP, width=7).place(x=10, y=350)
+    knop_anstoQ=tkinter.ttk.Button(screenCalculator, text="Ans=Q", command=anstoQ, width=7).place(x=10, y=375)
+    knop_anstoR=tkinter.ttk.Button(screenCalculator, text="Ans=R", command=anstoR, width=7).place(x=10, y=400)
+    knop_anstoX=tkinter.ttk.Button(screenCalculator, text="Ans=X", command=anstoX, width=7).place(x=10, y=425)
+    knop_anstoY=tkinter.ttk.Button(screenCalculator, text="Ans=Y", command=anstoY, width=7).place(x=10, y=450)
+    knop_anstoZ=tkinter.ttk.Button(screenCalculator, text="Ans=Z", command=anstoZ, width=7).place(x=10, y=475)
 
     def A_ins():
-        scherm1.insert("end", A)
+        windowInputCalculator.insert("end", A)
     def B_ins():
-        scherm1.insert("end", B)
+        windowInputCalculator.insert("end", B)
     def C_ins():
-        scherm1.insert("end", C)
+        windowInputCalculator.insert("end", C)
     def D_ins():
-        scherm1.insert("end", D)
+        windowInputCalculator.insert("end", D)
     def E_ins():
-        scherm1.insert("end", E)
+        windowInputCalculator.insert("end", E)
     def F_ins():
-        scherm1.insert("end", F)
+        windowInputCalculator.insert("end", F)
     def P_ins():
-        scherm1.insert("end", P)
+        windowInputCalculator.insert("end", P)
     def Q_ins():
-        scherm1.insert("end", Q)
+        windowInputCalculator.insert("end", Q)
     def R_ins():
-        scherm1.insert("end", R)
+        windowInputCalculator.insert("end", R)
     def X_ins():
-        scherm1.insert("end", X)
+        windowInputCalculator.insert("end", X)
     def Y_ins():
-        scherm1.insert("end", Y)
+        windowInputCalculator.insert("end", Y)
     def Z_ins():
-        scherm1.insert("end", Z)
+        windowInputCalculator.insert("end", Z)
 
-    knop_A=tkinter.ttk.Button(venster_rekenmachine, text="A", command=A_ins, width=2).place(x=60, y=200)
-    knop_B=tkinter.ttk.Button(venster_rekenmachine, text="B", command=B_ins, width=2).place(x=60, y=225)
-    knop_C=tkinter.ttk.Button(venster_rekenmachine, text="C", command=C_ins, width=2).place(x=60, y=250)
-    knop_D=tkinter.ttk.Button(venster_rekenmachine, text="D", command=D_ins, width=2).place(x=60, y=275)
-    knop_E=tkinter.ttk.Button(venster_rekenmachine, text="E", command=E_ins, width=2).place(x=60, y=300)
-    knop_F=tkinter.ttk.Button(venster_rekenmachine, text="F", command=F_ins, width=2).place(x=60, y=325)
-    knop_P=tkinter.ttk.Button(venster_rekenmachine, text="P", command=P_ins, width=2).place(x=60, y=350)
-    knop_Q=tkinter.ttk.Button(venster_rekenmachine, text="Q", command=Q_ins, width=2).place(x=60, y=375)
-    knop_R=tkinter.ttk.Button(venster_rekenmachine, text="R", command=R_ins, width=2).place(x=60, y=400)
-    knop_X=tkinter.ttk.Button(venster_rekenmachine, text="X", command=X_ins, width=2).place(x=60, y=425)
-    knop_Y=tkinter.ttk.Button(venster_rekenmachine, text="Y", command=Y_ins, width=2).place(x=60, y=450)
-    knop_Z=tkinter.ttk.Button(venster_rekenmachine, text="Z", command=Z_ins, width=2).place(x=60, y=475)
+    knop_A=tkinter.ttk.Button(screenCalculator, text="A", command=A_ins, width=2).place(x=60, y=200)
+    knop_B=tkinter.ttk.Button(screenCalculator, text="B", command=B_ins, width=2).place(x=60, y=225)
+    knop_C=tkinter.ttk.Button(screenCalculator, text="C", command=C_ins, width=2).place(x=60, y=250)
+    knop_D=tkinter.ttk.Button(screenCalculator, text="D", command=D_ins, width=2).place(x=60, y=275)
+    knop_E=tkinter.ttk.Button(screenCalculator, text="E", command=E_ins, width=2).place(x=60, y=300)
+    knop_F=tkinter.ttk.Button(screenCalculator, text="F", command=F_ins, width=2).place(x=60, y=325)
+    knop_P=tkinter.ttk.Button(screenCalculator, text="P", command=P_ins, width=2).place(x=60, y=350)
+    knop_Q=tkinter.ttk.Button(screenCalculator, text="Q", command=Q_ins, width=2).place(x=60, y=375)
+    knop_R=tkinter.ttk.Button(screenCalculator, text="R", command=R_ins, width=2).place(x=60, y=400)
+    knop_X=tkinter.ttk.Button(screenCalculator, text="X", command=X_ins, width=2).place(x=60, y=425)
+    knop_Y=tkinter.ttk.Button(screenCalculator, text="Y", command=Y_ins, width=2).place(x=60, y=450)
+    knop_Z=tkinter.ttk.Button(screenCalculator, text="Z", command=Z_ins, width=2).place(x=60, y=475)
     
-    venster_rekenmachine.mainloop()
+    screenCalculator.mainloop()
 Login()
 ##rekenmachine()
