@@ -1,8 +1,14 @@
+import json
+
+import re
+
 loginCheck = False
 
-alphabetPrinter = True
+alphabetPrinter = False
 
 letterprinter = False
+
+userDataTest = True
 
 if loginCheck == True:
     users = [
@@ -55,3 +61,38 @@ if letterprinter == True:
             print(f'    def actionType{letter}():windowInputCalculator.insert("end", "{letter}")')
             print(f'    buttonType{letter}=tkinter.ttk.Button(screenCalculator, text="{letter}", command=actionType{letter}, width=2).place(x=250, y={210+25*i})')
             print(f'')
+
+if userDataTest == True:
+    users = [
+        {'userName': 'Admin', 'userPassword': 'P@$$w0rd'},
+        {'userName': 'User1', 'userPassword': 'password'}
+    ]
+
+    def saveUser(username, password):
+        with open("accounts.json") as f:
+            userData= f.read()
+            userData = userData[0:-18]
+            userData += '\n        },\n        {'
+            userData += f'\n        "name": "{username}",\n        "password": "{password}"'
+            userData += '\n        }\n    ]\n}'
+            with open('accounts.json', 'w') as file:
+                file.write(userData)
+
+    def loadUser(username, password):
+        loginFound = False
+
+        with open("accounts.json", 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+
+        for i, line in enumerate(lines):
+            userNameLine = re.search(r'\s*"name": "(.*)".*', line)
+            if userNameLine:
+                compareName = userNameLine.group(1).strip()
+                userKeyLine = re.search(r'\s*"password": "(.*)".*', lines[i+1])
+                compareKey = userKeyLine.group(1).strip()
+                if compareName == username and compareKey == password:
+                    loginFound = True
+
+        return loginFound
+    
+    print(loadUser('Admin', 'P@$$w0rd'))

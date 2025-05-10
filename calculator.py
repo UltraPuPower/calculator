@@ -1,9 +1,8 @@
-import math
+import math #NOTE: math is not directly used in the code, but it is used after replacing with the convertMath function
 import tkinter
 import tkinter.ttk
 import tkinter.messagebox
-from tkinter import *
-import random
+import re
 
 print('Calculator running')
 
@@ -12,19 +11,37 @@ users = [
     {'userName': 'User1', 'userPassword': 'password'}
 ]
 
-def loginCheck(givenName, givenKey):
-    loginValid = False
-    for user in users:
-        if givenName == user['userName'] and givenKey == user['userPassword']:
-            loginValid = True
-    if loginValid:
-        return True
-    else:
-        return False
+
+def saveUser(username, password):
+    with open("accounts.json") as f:
+        userData= f.read()
+        userData = userData[0:-18]
+        userData += '\n        },\n        {'
+        userData += f'\n        "name": "{username}",\n        "password": "{password}"'
+        userData += '\n        }\n    ]\n}'
+        with open('accounts.json', 'w') as file:
+            file.write(userData)
+
+def loadUser(username, password):
+    loginFound = False
+
+    with open("accounts.json", 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+
+    for i, line in enumerate(lines):
+        userNameLine = re.search(r'\s*"name": "(.*)".*', line)
+        if userNameLine:
+            compareName = userNameLine.group(1).strip()
+            userKeyLine = re.search(r'\s*"password": "(.*)".*', lines[i+1])
+            compareKey = userKeyLine.group(1).strip()
+            if compareName == username and compareKey == password:
+                loginFound = True
+
+    return loginFound
 
 def screenLoginDef():
 
-    screenLogin = Tk()
+    screenLogin = tkinter.Tk()
     screenLogin.title("Login")
     screenLogin.geometry("200x145+550+200")
 
@@ -41,7 +58,7 @@ def screenLoginDef():
         attemptUsername = usernameEntry.get()
         attemptPassword = passwordEntry.get()
 
-        if loginCheck(attemptUsername, attemptPassword):
+        if loadUser(attemptUsername, attemptPassword):
             tkinter.messagebox.showinfo(title="Beware", message="Calculator not fully operational, there may be bugs.")
             screenLogin.destroy()
             screenCalculatorDef()
@@ -50,6 +67,53 @@ def screenLoginDef():
             usernameEntry.delete("0", "end")
             passwordEntry.delete("0", "end")
     buttonLogin = tkinter.ttk.Button(screenLogin, text="Log in", command=validateLogin, width=10).place(x=120, y=110)
+
+    def actionRegister():
+        screenLogin.destroy()
+        screenRegisterDef()
+    buttonRegister = tkinter.ttk.Button(screenLogin, text="Register", command=actionRegister, width=10).place(x=10, y=110)
+
+def screenRegisterDef():
+
+    screenRegister = tkinter.Tk()
+    screenRegister.title("Register")
+    screenRegister.geometry("200x195+550+200")
+
+    labelUsername = tkinter.ttk.Label(screenRegister, text="Username").place(x=10, y=10)
+    usernameEntry = tkinter.Entry(screenRegister, width=29)
+    usernameEntry.place(x=10, y=35)
+    usernameEntry.focus()
+
+    labelPassword1 = tkinter.ttk.Label(screenRegister, text="Password").place(x=10, y=60)
+    passwordEntry1 = tkinter.Entry(screenRegister, width=29, show="•")
+    passwordEntry1.place(x=10, y=85)
+
+    labelPassword2 = tkinter.ttk.Label(screenRegister, text="Repeat Password").place(x=10, y=110)
+    passwordEntry2 = tkinter.Entry(screenRegister, width=29, show="•")
+    passwordEntry2.place(x=10, y=135)
+    
+    def validateRegistry():
+        attemptUsername = usernameEntry.get()
+        attemptPassword1 = passwordEntry1.get()
+        attemptPassword2 = passwordEntry2.get()
+        if not attemptPassword1 == attemptPassword2:
+            tkinter.messagebox.showerror(title="Error", message="Passwords are not identical.")
+            usernameEntry.delete("0", "end")
+            passwordEntry1.delete("0", "end")
+            passwordEntry2.delete("0", "end")
+            return
+        for user in users:
+            if attemptUsername == user['userName']:
+                tkinter.messagebox.showerror(title="Error", message="Username is already taken.")
+                usernameEntry.delete("0", "end")
+                passwordEntry1.delete("0", "end")
+                passwordEntry2.delete("0", "end")
+                return
+        saveUser(attemptUsername, attemptPassword1)
+        tkinter.messagebox.showinfo(title="Success", message="You have registered successfully.\nSending you back to the login screen.")
+        screenRegister.destroy()
+        screenLoginDef()
+    buttonRegister = tkinter.ttk.Button(screenRegister, text="Register", command=validateRegistry, width=10).place(x=120, y=160)
 
 def screenCalculatorDef():
 
@@ -60,16 +124,16 @@ def screenCalculatorDef():
     O = [0, 0]; P = [0, 0]; Q = [0, 0]; R = [0, 0]; S = [0, 0]; T = [0, 0]; U = [0, 0]
     V = [0, 0]; W = [0, 0]; X = [0, 0]; Y = [0, 0]; Z = [0, 0]
 
-    screenCalculator = Tk()
+    screenCalculator = tkinter.Tk()
     screenCalculator.title("Calculator")
     screenCalculator.geometry("465x595+550+200")
     windowInputCalculator=tkinter.Entry(screenCalculator, width=29)
     windowInputCalculator.place(x=10, y=10)
     tkinter.ttk.Label(screenCalculator, text="Calculator by UltraPuPower1\ninspired by:\nCalculator by 刘键明", font=["Verdana", "9"]).place(x=200, y=8)
     tkinter.ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV0.1", font=["Verdana", "7"]).place(x=0, y=550)
-    tkinter.ttk.Separator(screenCalculator, orient=VERTICAL).place(x=195, y=65, height=110, width=5)
-    tkinter.ttk.Separator(screenCalculator, orient=HORIZONTAL).place(x=0, y=175, height=5, width=195)
-    tkinter.ttk.Separator(screenCalculator, orient=HORIZONTAL).place(x=0, y=65, height=5, width=195)
+    tkinter.ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=195, y=65, height=110, width=5)
+    tkinter.ttk.Separator(screenCalculator, orient=tkinter.HORIZONTAL).place(x=0, y=175, height=5, width=195)
+    tkinter.ttk.Separator(screenCalculator, orient=tkinter.HORIZONTAL).place(x=0, y=65, height=5, width=195)
 
     windowOutputCalculator=tkinter.ttk.Label(screenCalculator, text = "")
     windowOutputCalculator.place(x=10, y=30)
@@ -79,7 +143,7 @@ def screenCalculatorDef():
         return text
     
     def convertMath(inputString):
-        print(f'Converting {inputString} to math')
+        text = f'Converted {inputString} to '
         
         for code in [{'mesh': 'log','new': 'math.log'}, {'mesh': 'sin', 'new': 'math.sin'}, {'mesh': 'cos', 'new': 'math.cos'}, {'mesh': 'tan', 'new': 'math.tan'},
                     {'mesh': '^', 'new': '**'}, {'mesh': '×10^', 'new': '*10**'}, {'mesh': 'Ans', 'new': f'{valAnsMath[0]}'}]:
@@ -94,7 +158,7 @@ def screenCalculatorDef():
                      {'mesh': 'Y', 'new': str(Y[1])}, {'mesh': 'Z', 'new': str(Z[1])}]:
             inputString = inputString.replace(code['mesh'], code['new'])
         
-        print(f'Converted {inputString} to math')
+        print(f'{text}{inputString}')
         return inputString
 
     def actionOne(): windowInputCalculator.insert("end","1")
@@ -236,7 +300,7 @@ def screenCalculatorDef():
         else:
             print("printing error")
             windowOutputCalculator.config(text = "")
-            windowOutputCalculator.config(text = "Error: "+str(errorLog))
+            tkinter.messagebox.showerror(title="Error", message=str(errorLog))
             storeAns(0, 0)
     buttonCalculate=tkinter.ttk.Button(screenCalculator, text="=", command=actionDisplayCalculation, width=7).place(x=85, y=145)
 
@@ -254,7 +318,7 @@ def screenCalculatorDef():
                 varSymbol.insert(0, outputValue)
                 varSymbol.insert(1, outputMath)
             else:
-                varSymbol.insert(0, errorLog)
+                tkinter.messagebox.showerror(title="Error", message=str(errorLog))
             textShowA.config(text = "")
             textShowA.config(text = "A = "+str(A[0]))
         return storeVar
@@ -443,5 +507,4 @@ def screenCalculatorDef():
     
     screenCalculator.mainloop()
 
-#screenLoginDef()
 screenCalculatorDef()
