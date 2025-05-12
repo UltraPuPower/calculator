@@ -172,4 +172,4 @@ def screenCalculatorDef():
 
 #screenCalculatorDef()
 
-screenLoginDef(screenCalculatorDef, screenRegisterDef)
+screenLoginDef(screenCalculatorDef, screenRegisterDef) #NOTE: Admin password is 'password'

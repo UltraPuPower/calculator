@@ -2,6 +2,12 @@ import tkinter
 import tkinter.ttk
 import tkinter.messagebox
 import re
+import hashlib
+
+def passwordHash(password):
+   password_bytes = password.encode('utf-8')
+   hash_object = hashlib.sha256(password_bytes)
+   return hash_object.hexdigest()
 
 def screenLoginDef(calculatorDef, registerDef):
 
@@ -30,7 +36,7 @@ def screenLoginDef(calculatorDef, registerDef):
                 compareName = userNameLine.group(1).strip()
                 userKeyLine = re.search(r'\s*"password": "(.*)".*', lines[i+1])
                 compareKey = userKeyLine.group(1).strip()
-                if compareName == username and compareKey == password:
+                if compareName == username and compareKey == passwordHash(password):
                     loginFound = True
 
         return loginFound
@@ -51,7 +57,7 @@ def screenLoginDef(calculatorDef, registerDef):
 
     def actionRegister():
         screenLogin.destroy()
-        registerDef(screenLoginDef)
+        registerDef()
     buttonRegister = tkinter.ttk.Button(screenLogin, text="Register", command=actionRegister, width=10).place(x=10, y=110)
 
     screenLogin.mainloop()

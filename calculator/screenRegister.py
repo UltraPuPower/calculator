@@ -1,5 +1,11 @@
 import tkinter
 import re
+import hashlib
+
+def passwordHash(password):
+   password_bytes = password.encode('utf-8')
+   hash_object = hashlib.sha256(password_bytes)
+   return hash_object.hexdigest()
 
 def screenRegisterDef():
 
@@ -25,7 +31,7 @@ def screenRegisterDef():
             userData= f.read()
             userData = userData[0:-18]
             userData += '\n        },\n        {'
-            userData += f'\n        "name": "{username}",\n        "password": "{password}"'
+            userData += f'\n        "name": "{username}",\n        "password": "{passwordHash(password)}"'
             userData += '\n        }\n    ]\n}'
             with open('./calculator/accounts.json', 'w') as file:
                 file.write(userData)
