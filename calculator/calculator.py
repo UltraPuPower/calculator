@@ -1,6 +1,6 @@
 from screenWelcome import screenWelcomeDef
 from screenCalculator import screenCalculatorDef
 
-screenCalculatorDef()
+#screenCalculatorDef()
 
-#screenWelcomeDef(screenCalculatorDef) #NOTE: Admin password is 'password'
+screenWelcomeDef(screenCalculatorDef) #NOTE: Admin password is 'password'

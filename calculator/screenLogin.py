@@ -3,6 +3,9 @@ import tkinter.ttk
 import tkinter.messagebox
 import re
 import hashlib
+import pathlib
+
+# current working directory
 
 from screenCalculator import screenCalculatorDef
 
@@ -12,6 +15,7 @@ def passwordHash(password):
    return hash_object.hexdigest()
 
 def screenLoginDef(calculatorDef, welcomeDef):
+    filepath = pathlib.Path().absolute()
 
     screenLogin = tkinter.Tk()
     screenLogin.title("Login")
@@ -28,8 +32,9 @@ def screenLoginDef(calculatorDef, welcomeDef):
 
     def loadUser(username, password):
         loginFound = False
+        userFound = False
 
-        with open("./accounts.json", 'r', encoding='utf-8') as file:
+        with open(f"{filepath}/accounts.json", 'r', encoding='utf-8') as file:
             lines = file.readlines()
 
         for i, line in enumerate(lines):
@@ -40,19 +45,24 @@ def screenLoginDef(calculatorDef, welcomeDef):
                 compareKey = userKeyLine.group(1).strip()
                 if compareName == username and compareKey == passwordHash(password):
                     loginFound = True
+                if compareName == username:
+                    userFound = True
 
-        return loginFound
+        return loginFound, userFound
     
     def validateLogin():    
         attemptUsername = usernameEntry.get()
         attemptPassword = passwordEntry.get()
 
-        if loadUser(attemptUsername, attemptPassword):
+        if loadUser(attemptUsername, attemptPassword)[0]:
             tkinter.messagebox.showinfo(title="Beware", message="Calculator not fully operational, there may be bugs.")
             screenLogin.destroy()
             calculatorDef()
+        elif not loadUser(attemptUsername, attemptPassword)[0] and loadUser(attemptUsername, attemptPassword)[1]:
+            tkinter.messagebox.showerror(title="Error", message="Password did not match.")
+            passwordEntry.delete("0", "end")
         else:
-            tkinter.messagebox.showerror(title="Error", message="Username and password did not match.")
+            tkinter.messagebox.showerror(title="Error", message="Username not found.")
             usernameEntry.delete("0", "end")
             passwordEntry.delete("0", "end")
     buttonLogin = tkinter.ttk.Button(screenLogin, text="Log in", command=validateLogin, width=10).place(x=120, y=110)

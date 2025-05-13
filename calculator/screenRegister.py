@@ -1,6 +1,7 @@
 import tkinter
 import re
 import hashlib
+import pathlib
 
 from screenCalculator import screenCalculatorDef
 
@@ -10,6 +11,7 @@ def passwordHash(password):
    return hash_object.hexdigest()
 
 def screenRegisterDef(welcomeDef):
+    filepath = pathlib.Path().absolute()
 
     screenRegister = tkinter.Tk()
     screenRegister.title("Register")
@@ -29,19 +31,19 @@ def screenRegisterDef(welcomeDef):
     passwordEntry2.place(x=10, y=135)
 
     def saveUser(username, password):
-        with open("./accounts.json") as f:
+        with open(f"{filepath}/accounts.json") as f:
             userData= f.read()
             userData = userData[0:-18]
             userData += '\n        },\n        {'
             userData += f'\n        "name": "{username}",\n        "password": "{passwordHash(password)}"'
             userData += '\n        }\n    ]\n}'
-            with open('./accounts.json', 'w') as file:
+            with open(f"{filepath}/accounts.json", 'w') as file:
                 file.write(userData)
 
 
     def checkUserName(username):
         taken = False
-        with open("./accounts.json", 'r', encoding='utf-8') as file:
+        with open(f"{filepath}/accounts.json", 'r', encoding='utf-8') as file:
             lines = file.readlines()
 
         for i, line in enumerate(lines):
