@@ -63,9 +63,19 @@ def screenRegisterDef(welcomeDef):
         attemptUsername = usernameEntry.get()
         attemptPassword1 = passwordEntry1.get()
         attemptPassword2 = passwordEntry2.get()
+        if re.search(r"[^a-zA-Z0-9]", attemptUsername):
+            tkinter.messagebox.showerror(title="Error", message="Invalid username. Only alphanumeric characters are allowed.")
+            usernameEntry.delete("0", "end")
+            passwordEntry1.delete("0", "end")
+            passwordEntry2.delete("0", "end")
+            return
+        if re.search(r".*`.*", attemptPassword1) or re.search(r".*'.*", attemptPassword1) or re.search(r".*\".*", attemptPassword1):
+            tkinter.messagebox.showerror(title="Error", message="Invalid Password. Using quotes or backticks is not allowed.")
+            passwordEntry1.delete("0", "end")
+            passwordEntry2.delete("0", "end")
+            return
         if not attemptPassword1 == attemptPassword2:
             tkinter.messagebox.showerror(title="Error", message="Passwords are not identical.")
-            usernameEntry.delete("0", "end")
             passwordEntry1.delete("0", "end")
             passwordEntry2.delete("0", "end")
             return

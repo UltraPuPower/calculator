@@ -1,6 +1,11 @@
 import tkinter
 
-def screenFunctionsDef(inputWindow):
+from variables import actionBaseDef
+
+def screenFunctionsDef(inputWindowView, inputWindowMath):
+
+    def actionBase(viewInput, viewLength, mathInput, mathLength): actionBaseDef(viewInput, viewLength, mathInput, mathLength, inputWindowView, inputWindowMath)
+
     screenFunctions = tkinter.Tk()
     screenFunctions.title("Functions")
     screenFunctions.geometry("300x665+150+200")
@@ -10,7 +15,7 @@ def screenFunctionsDef(inputWindow):
         screenFunctions.destroy()
     buttonScreenFunctionsExit=tkinter.ttk.Button(screenFunctions, text="Exit", command=actionScreenFunctionsExit, width=5).place(x=250, y=0)
 
-    def actionSquareroot(): inputWindow.insert("end", "√(")
+    def actionSquareroot(): actionBase("√(", 2, "math.sqrt(", 10)
     buttonSquareroot=tkinter.ttk.Button(screenFunctions, text="√", command=actionSquareroot, width=3).place(x=5, y=20)
 
     screenFunctions.mainloop()

@@ -1,7 +1,7 @@
 import math #NOTE: math is not directly used in the code, but it is used after replacing with the convertMath function
 
 from variables import storeA, storeB, storeC, storeD, storeE, storeF, storeG, storeH, storeI, storeJ, storeK, storeL, storeM, storeN, storeO, storeP, storeQ, storeR, storeS, storeT, storeU, storeV, storeW, storeX, storeY, storeZ
-from variables import valAnsPrint, valAnsMath
+from variables import valAnsView, valAnsMath
 
 def convertMath(inputString):
     print('------======------')
@@ -28,7 +28,7 @@ def convertMath(inputString):
     return inputString
 
 def actionCalculate(inputWindow):
-    input = convertMath(inputWindow.get())
+    input = inputWindow.get()
     try:
         n = 0
         outputMath = eval(input)
