@@ -4,6 +4,7 @@ from variables import storeA, storeB, storeC, storeD, storeE, storeF, storeG, st
 from variables import valAnsPrint, valAnsMath
 
 def convertMath(inputString):
+    print('------======------')
     text = f'Converted {inputString} to '
 
     for code in [{'mesh': 'log','new': 'math.log'}, {'mesh': 'sin', 'new': 'math.sin'}, {'mesh': 'cos', 'new': 'math.cos'}, {'mesh': 'tan', 'new': 'math.tan'},

@@ -45,6 +45,7 @@ def screenCalculatorDef():
     windowOutputCalculator.place(x=10, y=30)
 
     def actionCalculatorClose():
+        tkinter.messagebox.showinfo(title="Goodbye", message="Thank you for using the calculator.\nSee you next time!")
         screenCalculator.destroy()
     buttonCalculatorClose=tkinter.ttk.Button(screenCalculator, text="Close", command=actionCalculatorClose, width=5).place(x=400, y=0)
 

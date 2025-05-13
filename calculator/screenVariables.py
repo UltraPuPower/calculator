@@ -14,7 +14,7 @@ def screenVariablesDef(inputWindow, actionCalculate):
     textShowA = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowA.place(x=85, y=15)
     def actionStoreA():
-        result = actionCalculate(inputWindow.get()); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeA.clear()
+        result = actionCalculate(inputWindow); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeA.clear()
         if errorLog == None:
             storeA.insert(0, outputValue); storeA.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
