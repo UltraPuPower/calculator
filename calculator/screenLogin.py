@@ -4,12 +4,14 @@ import tkinter.messagebox
 import re
 import hashlib
 
+from screenCalculator import screenCalculatorDef
+
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
    hash_object = hashlib.sha256(password_bytes)
    return hash_object.hexdigest()
 
-def screenLoginDef(calculatorDef, registerDef):
+def screenLoginDef(calculatorDef, welcomeDef):
 
     screenLogin = tkinter.Tk()
     screenLogin.title("Login")
@@ -27,7 +29,7 @@ def screenLoginDef(calculatorDef, registerDef):
     def loadUser(username, password):
         loginFound = False
 
-        with open("./calculator/accounts.json", 'r', encoding='utf-8') as file:
+        with open("./accounts.json", 'r', encoding='utf-8') as file:
             lines = file.readlines()
 
         for i, line in enumerate(lines):
@@ -55,9 +57,9 @@ def screenLoginDef(calculatorDef, registerDef):
             passwordEntry.delete("0", "end")
     buttonLogin = tkinter.ttk.Button(screenLogin, text="Log in", command=validateLogin, width=10).place(x=120, y=110)
 
-    def actionRegister():
+    def actionReturn():
         screenLogin.destroy()
-        registerDef()
-    buttonRegister = tkinter.ttk.Button(screenLogin, text="Register", command=actionRegister, width=10).place(x=10, y=110)
+        welcomeDef(screenCalculatorDef)
+    buttonRegister = tkinter.ttk.Button(screenLogin, text="Return", command=actionReturn, width=10).place(x=10, y=110)
 
     screenLogin.mainloop()

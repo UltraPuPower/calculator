@@ -5,10 +5,6 @@ import tkinter.messagebox
 from calculations import actionCalculate
 from variables import valAnsPrint, valAnsMath
 
-from screenRegister import screenRegisterDef
-
-from screenLogin import screenLoginDef
-
 from screenFunctions import screenFunctionsDef
 
 from screenVariables import screenVariablesDef
@@ -37,7 +33,7 @@ def screenCalculatorDef():
                 tkinter.ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=i*5, y=0, height=595, width=5)
                 i = i + 1
 
-    windowInputCalculator=tkinter.Entry(screenCalculator, width=29)
+    windowInputCalculator = tkinter.Entry(screenCalculator, width=29)
     windowInputCalculator.place(x=10, y=10)
     tkinter.ttk.Label(screenCalculator, text="Calculator by UltraPuPower1\ninspired by:\nCalculator by 刘键明", font=["Verdana", "9"]).place(x=200, y=8)
     tkinter.ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV0.1", font=["Verdana", "7"]).place(x=0, y=550)
@@ -159,7 +155,7 @@ def screenCalculatorDef():
     def actionAns(): windowInputCalculator.insert("end", "Ans")
     buttonAns=tkinter.ttk.Button(screenCalculator, text="ans", command=actionAns, width=3).place(x=135, y=145)
 
-    def actionOpenVariables(): screenVariablesDef(windowInputCalculator, actionCalculate(windowInputCalculator))
+    def actionOpenVariables(): screenVariablesDef(windowInputCalculator, actionCalculate)
     buttonVariables=tkinter.ttk.Button(screenCalculator, text="Variables", command=actionOpenVariables, width=15).place(x=200, y=70)
     
     def actionOpenFunctions(): screenFunctionsDef(windowInputCalculator)
@@ -169,7 +165,3 @@ def screenCalculatorDef():
     buttonConstants=tkinter.ttk.Button(screenCalculator, text="Constants", command=actionOpenConstants, width=15).place(x=200, y=120)
     
     screenCalculator.mainloop()
-
-#screenCalculatorDef()
-
-screenLoginDef(screenCalculatorDef, screenRegisterDef) #NOTE: Admin password is 'password'

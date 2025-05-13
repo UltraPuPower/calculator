@@ -2,12 +2,14 @@ import tkinter
 import re
 import hashlib
 
+from screenCalculator import screenCalculatorDef
+
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
    hash_object = hashlib.sha256(password_bytes)
    return hash_object.hexdigest()
 
-def screenRegisterDef():
+def screenRegisterDef(welcomeDef):
 
     screenRegister = tkinter.Tk()
     screenRegister.title("Register")
@@ -27,19 +29,19 @@ def screenRegisterDef():
     passwordEntry2.place(x=10, y=135)
 
     def saveUser(username, password):
-        with open("./calculator/accounts.json") as f:
+        with open("./accounts.json") as f:
             userData= f.read()
             userData = userData[0:-18]
             userData += '\n        },\n        {'
             userData += f'\n        "name": "{username}",\n        "password": "{passwordHash(password)}"'
             userData += '\n        }\n    ]\n}'
-            with open('./calculator/accounts.json', 'w') as file:
+            with open('./accounts.json', 'w') as file:
                 file.write(userData)
 
 
     def checkUserName(username):
         taken = False
-        with open("./calculator/accounts.json", 'r', encoding='utf-8') as file:
+        with open("./accounts.json", 'r', encoding='utf-8') as file:
             lines = file.readlines()
 
         for i, line in enumerate(lines):
@@ -49,6 +51,11 @@ def screenRegisterDef():
                 if compareName == username:
                     taken = True
         return taken
+
+    def actionReturn():
+        screenRegister.destroy()
+        welcomeDef(screenCalculatorDef)
+    buttonRegister = tkinter.ttk.Button(screenRegister, text="Return", command=actionReturn, width=10).place(x=10, y=160)
     
     def validateRegistry():
         attemptUsername = usernameEntry.get()
@@ -67,6 +74,7 @@ def screenRegisterDef():
             passwordEntry2.delete("0", "end")
             return
         saveUser(attemptUsername, attemptPassword1)
-        tkinter.messagebox.showinfo(title="Success", message="You have registered successfully.\nRestart the Calculator to log in.")
+        tkinter.messagebox.showinfo(title="Success", message="You have registered successfully.\nYou will be returned to the welcome screen.")
         screenRegister.destroy()
+        welcomeDef(screenCalculatorDef)
     buttonRegister = tkinter.ttk.Button(screenRegister, text="Register", command=validateRegistry, width=10).place(x=120, y=160)
