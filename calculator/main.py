@@ -17,6 +17,7 @@ def actionBaseDef(viewInput, viewLength, mathInput, mathLength, windowView, wind
     debugger(f'View:{insertListView}')
     debugger(f'Math:{insertListMath}')
 
-screenCalculatorDef()
-
-#screenWelcomeDef(screenCalculatorDef) #NOTE: Admin password is 'password'
+if debug == True:
+    screenCalculatorDef()
+else:
+    screenWelcomeDef(screenCalculatorDef) #NOTE: Admin password is 'password'
