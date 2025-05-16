@@ -3,7 +3,7 @@ import tkinter.ttk
 import tkinter.messagebox
 import re
 import hashlib
-import pathlib
+import os
 
 # current working directory
 
@@ -15,7 +15,7 @@ def passwordHash(password):
    return hash_object.hexdigest()
 
 def screenLoginDef(calculatorDef, welcomeDef):
-    filepath = pathlib.Path().absolute()
+    filepath = os.path.dirname(__file__)
 
     screenLogin = tkinter.Tk()
     screenLogin.title("Login")

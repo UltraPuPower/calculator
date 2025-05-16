@@ -6,7 +6,7 @@ from calculations import actionCalculate
 
 from variables import valAnsView, valAnsMath, insertListView, insertListMath
 from variables import actionBaseDef
-from variables import debugger
+from variables import debugger, debug
 
 from screenFunctions import screenFunctionsDef
 
@@ -19,7 +19,7 @@ def screenCalculatorDef():
 
     screenCalculator = tkinter.Tk()
     screenCalculator.title("Calculator")
-    screenCalculator.geometry("400x595+550+200")
+    screenCalculator.geometry("310x595+500+200")
 
     helperLines = False
     if helperLines:
@@ -35,15 +35,15 @@ def screenCalculatorDef():
                 tkinter.ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=i*5, y=0, height=595, width=5)
                 i = i + 1
 
-    windowInputCalculatorMath = tkinter.Entry(screenCalculator, width=50)
+    windowInputCalculatorMath = tkinter.Entry(screenCalculator, width=47)
     windowInputCalculatorMath.place(x=10, y=10)
 
-    windowInputCalculatorView = tkinter.Entry(screenCalculator, width=50)
+    windowInputCalculatorView = tkinter.Entry(screenCalculator, width=47)
     windowInputCalculatorView.place(x=10, y=10)
 
     def actionBase(viewInput, viewLength, mathInput, mathLength): actionBaseDef(viewInput, viewLength, mathInput, mathLength, windowInputCalculatorView, windowInputCalculatorMath)
 
-    tkinter.ttk.Label(screenCalculator, text="Calculator by UltraPuPower1\ninspired by:\nCalculator by 刘键明", font=["Verdana", "9"]).place(x=200, y=68)
+    tkinter.ttk.Label(screenCalculator, text="Calculator by UltraPuPower1\ninspired by:\nCalculator by 刘键明", font=["Verdana", "9"]).place(x=5, y=210)
     tkinter.ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV0.1", font=["Verdana", "7"]).place(x=5, y=550)
     tkinter.ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=1, y=65, height=135, width=5)
     tkinter.ttk.Separator(screenCalculator, orient=tkinter.HORIZONTAL).place(x=2, y=65, height=5, width=195)
@@ -56,7 +56,7 @@ def screenCalculatorDef():
     def actionCalculatorClose():
         tkinter.messagebox.showinfo(title="Goodbye", message="Thank you for using the calculator.\nSee you next time!")
         screenCalculator.destroy()
-    buttonCalculatorClose=tkinter.ttk.Button(screenCalculator, text="Close", command=actionCalculatorClose, width=5).place(x=350, y=0)
+    buttonCalculatorClose=tkinter.ttk.Button(screenCalculator, text="Close", command=actionCalculatorClose, width=6).place(x=255, y=70)
 
     def actionOne(): actionBase("1", 1, "1", 1)
     buttonOne=tkinter.ttk.Button(screenCalculator, text="1", command=actionOne, width=3).place(x=10, y=70)
@@ -202,13 +202,14 @@ def screenCalculatorDef():
     def actionOpenConstants(): screenConstantsDef(windowInputCalculatorView, windowInputCalculatorMath)
     buttonConstants=tkinter.ttk.Button(screenCalculator, text="Constants", command=actionOpenConstants, width=15).place(x=200, y=170)
 
-    def actionViewCheck():
-        viewString = windowInputCalculatorView.get()
-        mathString = windowInputCalculatorMath.get()
-        debugger('------======------')
-        debugger(f'View:{viewString}')
-        debugger(f'Math:{mathString}')
-        debugger('------======------')
-    buttonBackspace=tkinter.ttk.Button(screenCalculator, text="Check", command=actionViewCheck, width=6).place(x=10, y=220)
+    if debug == True:
+        def actionViewCheck():
+            viewString = windowInputCalculatorView.get()
+            mathString = windowInputCalculatorMath.get()
+            debugger('------======------')
+            debugger(f'View:{viewString}')
+            debugger(f'Math:{mathString}')
+            debugger('------======------')
+        buttonBackspace=tkinter.ttk.Button(screenCalculator, text="Check", command=actionViewCheck, width=6).place(x=255, y=95)
     
     screenCalculator.mainloop()

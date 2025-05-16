@@ -8,7 +8,7 @@ storeV = ['', '', 0, 0]; storeW = ['', '', 0, 0]; storeX = ['', '', 0, 0]; store
 insertListView = []
 insertListMath = []
 
-debug = True
+debug = False
 
 def debugger(message):
     if debug == True:

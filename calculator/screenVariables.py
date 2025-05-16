@@ -7,7 +7,7 @@ from variables import actionBaseDef
 def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     screenVariables = tkinter.Tk()
     screenVariables.title("Variables")
-    screenVariables.geometry("250x665+1065+200")
+    screenVariables.geometry("250x665+860+200")
 
     def actionBase(viewInput, viewLength, mathInput, mathLength): actionBaseDef(viewInput, viewLength, mathInput, mathLength, inputWindowView, inputWindowMath)
 

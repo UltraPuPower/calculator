@@ -8,7 +8,7 @@ def screenConstantsDef(inputWindowView, inputWindowMath):
 
     screenConstants = tkinter.Tk()
     screenConstants.title("Constants")
-    screenConstants.geometry("300x665+1365+200")
+    screenConstants.geometry("300x665+1160+200")
 
     # def actionPhysicsWarning():
     #     tkinter.messagebox.showinfo(title="Beware", message="Physics constants use unconventional symbols.\nThis means that you won't be able to type them with your keyboard.\nYou can use the buttons to insert them into the calculator.")
