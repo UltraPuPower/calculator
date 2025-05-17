@@ -1,10 +1,6 @@
 import tkinter
 
-from variables import actionBaseDef
-
-def screenConstantsDef(inputWindowView, inputWindowMath):
-
-    def actionBase(viewInput, viewLength, mathInput, mathLength): actionBaseDef(viewInput, viewLength, mathInput, mathLength, inputWindowView, inputWindowMath)
+def screenConstantsDef(inputWindowView):
 
     screenConstants = tkinter.Tk()
     screenConstants.title("Constants")
@@ -21,45 +17,45 @@ def screenConstantsDef(inputWindowView, inputWindowMath):
         screenConstants.destroy()
     buttonScreenConstantsExit=tkinter.ttk.Button(screenConstants, text="Exit", command=actionScreenConstantsExit, width=5).place(x=250, y=0)
 
-    def actionPi(): actionBase("π", 1, "math.pi", 7)
+    def actionPi(): inputWindowView.insert("end", "π")
     buttonPi=tkinter.ttk.Button(screenConstants, text="π", command=actionPi, width=3).place(x=5, y=20)
 
-    def actionEuler(): actionBase("e", 1, "math.e", 6)
+    def actionEuler(): inputWindowView.insert("end", "e")
     buttonEuler=tkinter.ttk.Button(screenConstants, text="e", command=actionEuler, width=3).place(x=35, y=20)
 
-    def actionTau(): actionBase("τ", 1, "math.tau", 8)
+    def actionTau(): inputWindowView.insert("end", "τ")
     buttonTau=tkinter.ttk.Button(screenConstants, text="τ", command=actionTau, width=3).place(x=65, y=20)
 
-    def actionPhi(): actionBase("φ", 1, "((1+math.sqrt(5))/2)", 20)
+    def actionPhi(): inputWindowView.insert("end", "φ")
     buttonPhi=tkinter.ttk.Button(screenConstants, text="φ", command=actionPhi, width=3).place(x=95, y=20)
 
     tkinter.ttk.Label(screenConstants, text="Physics constants").place(x=5, y=45)
 
-    def actionLight(): actionBase("c", 1, "(2.99792458*10**8)", 18)
+    def actionLight(): inputWindowView.insert("end", "c")
     buttonLight=tkinter.ttk.Button(screenConstants, text="c", command=actionLight, width=3).place(x=5, y=65)
     tkinter.ttk.Label(screenConstants, text="Speed of Light").place(x=30, y=70)
 
-    def actionPlanck(): actionBase("h", 1, "(6.62607015*10**-34)", 20)
+    def actionPlanck(): inputWindowView.insert("end", "h")
     buttonPlanck=tkinter.ttk.Button(screenConstants, text="h", command=actionPlanck, width=3).place(x=5, y=90)
     tkinter.ttk.Label(screenConstants, text="Planck Constant").place(x=30, y=95)
 
-    def actionGravityConst(): actionBase("G", 1, "(6.67430*10**-11)", 17)
+    def actionGravityConst(): inputWindowView.insert("end", "G")
     buttonGravityConst=tkinter.ttk.Button(screenConstants, text="G", command=actionGravityConst, width=3).place(x=5, y=115)
     tkinter.ttk.Label(screenConstants, text="Gravitation Constant").place(x=30, y=120)
 
-    def actionGravity(): actionBase("g", 1, "(9.81)", 6)
+    def actionGravity(): inputWindowView.insert("end", "g")
     buttonGravity=tkinter.ttk.Button(screenConstants, text="g", command=actionGravity, width=3).place(x=5, y=140)
     tkinter.ttk.Label(screenConstants, text="Gravitational Acceleration (NL)").place(x=30, y=145)
 
-    def actionBoltzmann(): actionBase("k", 1, "(1.380649*10**-23)", 18)
+    def actionBoltzmann(): inputWindowView.insert("end", "k")
     buttonBoltzmann=tkinter.ttk.Button(screenConstants, text="k", command=actionBoltzmann, width=3).place(x=5, y=165)
     tkinter.ttk.Label(screenConstants, text="Boltzmann Constant").place(x=30, y=170)
 
-    def actionAvogadro(): actionBase("N", 1, "(6.02214076*10**23)", 19)
+    def actionAvogadro(): inputWindowView.insert("end", "N")
     buttonAvogadro=tkinter.ttk.Button(screenConstants, text="N", command=actionAvogadro, width=3).place(x=5, y=190)
     tkinter.ttk.Label(screenConstants, text="Avogadro Constant").place(x=30, y=195)
 
-    def actionElementalChargeQuantum(): actionBase("eV", 2, "(1.602176634*10**-19)", 21)
+    def actionElementalChargeQuantum(): inputWindowView.insert("end", "eV")
     buttonElementalChargeQuantum=tkinter.ttk.Button(screenConstants, text="eV", command=actionElementalChargeQuantum, width=3).place(x=5, y=215)
     tkinter.ttk.Label(screenConstants, text="Elementary Charge").place(x=30, y=220)
 

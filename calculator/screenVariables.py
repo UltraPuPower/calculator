@@ -2,14 +2,10 @@ import tkinter
 
 from variables import storeA, storeB, storeC, storeD, storeE, storeF, storeG, storeH, storeI, storeJ, storeK, storeL, storeM, storeN, storeO, storeP, storeQ, storeR, storeS, storeT, storeU, storeV, storeW, storeX, storeY, storeZ
 
-from variables import actionBaseDef
-
 def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     screenVariables = tkinter.Tk()
     screenVariables.title("Variables")
     screenVariables.geometry("250x665+860+200")
-
-    def actionBase(viewInput, viewLength, mathInput, mathLength): actionBaseDef(viewInput, viewLength, mathInput, mathLength, inputWindowView, inputWindowMath)
 
     def actionScreenVariablesExit():
         screenVariables.destroy()
@@ -24,7 +20,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowA.config(text = ""); textShowA.config(text = "= "+str(storeA[0]))
     buttonStoreA=tkinter.ttk.Button(screenVariables, text="Ans=A", command=actionStoreA, width=7).place(x=10, y=10)
-    def actionTypeA(): actionBase("A", 1, storeA[0], len(storeA[0]))
+    def actionTypeA(): inputWindowView.insert("end", "A")
     buttonTypeA=tkinter.ttk.Button(screenVariables, text="A", command=actionTypeA, width=2).place(x=60, y=10)
 
     textShowB = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -36,7 +32,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowB.config(text = ""); textShowB.config(text = "= "+str(storeB[0]))
     buttonStoreB=tkinter.ttk.Button(screenVariables, text="Ans=B", command=actionStoreB, width=7).place(x=10, y=35)
-    def actionTypeB(): actionBase("B", 1, storeB[0], len(storeB[0]))
+    def actionTypeB(): inputWindowView.insert("end", "B")
     buttonTypeB=tkinter.ttk.Button(screenVariables, text="B", command=actionTypeB, width=2).place(x=60, y=35)
 
     textShowC = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -48,7 +44,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowC.config(text = ""); textShowC.config(text = "= "+str(storeC[0]))
     buttonStoreC=tkinter.ttk.Button(screenVariables, text="Ans=C", command=actionStoreC, width=7).place(x=10, y=60)
-    def actionTypeC(): actionBase("C", 1, storeC[0], len(storeC[0]))
+    def actionTypeC(): inputWindowView.insert("end", "C")
     buttonTypeC=tkinter.ttk.Button(screenVariables, text="C", command=actionTypeC, width=2).place(x=60, y=60)
 
     textShowD = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -60,7 +56,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowD.config(text = ""); textShowD.config(text = "= "+str(storeD[0]))
     buttonStoreD=tkinter.ttk.Button(screenVariables, text="Ans=D", command=actionStoreD, width=7).place(x=10, y=85)
-    def actionTypeD(): actionBase("D", 1, storeD[0], len(storeD[0]))
+    def actionTypeD(): inputWindowView.insert("end", "D")
     buttonTypeD=tkinter.ttk.Button(screenVariables, text="D", command=actionTypeD, width=2).place(x=60, y=85)
 
     textShowE = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -72,7 +68,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowE.config(text = ""); textShowE.config(text = "= "+str(storeE[0]))
     buttonStoreE=tkinter.ttk.Button(screenVariables, text="Ans=E", command=actionStoreE, width=7).place(x=10, y=110)
-    def actionTypeE(): actionBase("E", 1, storeE[0], len(storeE[0]))
+    def actionTypeE(): inputWindowView.insert("end", "E")
     buttonTypeE=tkinter.ttk.Button(screenVariables, text="E", command=actionTypeE, width=2).place(x=60, y=110)
 
     textShowF = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -84,20 +80,22 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowF.config(text = ""); textShowF.config(text = "= "+str(storeF[0]))
     buttonStoreF=tkinter.ttk.Button(screenVariables, text="Ans=F", command=actionStoreF, width=7).place(x=10, y=135)
-    def actionTypeF(): actionBase("F", 1, storeF[0], len(storeF[0]))
+    def actionTypeF(): inputWindowView.insert("end", "F")
     buttonTypeF=tkinter.ttk.Button(screenVariables, text="F", command=actionTypeF, width=2).place(x=60, y=135)
 
-    textShowG = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
-    textShowG.place(x=85, y=165)
-    def actionStoreG():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeG.clear()
-        if errorLog == None:
-            storeG.insert(0, outputValue); storeG.insert(1, outputMath)
-        else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
-        textShowG.config(text = ""); textShowG.config(text = "= "+str(storeG[0]))
-    buttonStoreG=tkinter.ttk.Button(screenVariables, text="Ans=G", command=actionStoreG, width=7).place(x=10, y=160)
-    def actionTypeG(): actionBase("G", 1, storeG[0], len(storeG[0]))
-    buttonTypeG=tkinter.ttk.Button(screenVariables, text="G", command=actionTypeG, width=2).place(x=60, y=160)
+    #NOTE removed due to gravity
+    labelNoG = tkinter.ttk.Label(screenVariables, text="Due to conflicts G is no longer a variable", font=["Verdana", "7"]).place(x=10, y=340)
+    # textShowG = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
+    # textShowG.place(x=85, y=165)
+    # def actionStoreG():
+    #     result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeG.clear()
+    #     if errorLog == None:
+    #         storeG.insert(0, outputValue); storeG.insert(1, outputMath)
+    #     else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
+    #     textShowG.config(text = ""); textShowG.config(text = "= "+str(storeG[0]))
+    # buttonStoreG=tkinter.ttk.Button(screenVariables, text="Ans=G", command=actionStoreG, width=7).place(x=10, y=160)
+    # def actionTypeG(): inputWindowView.insert("end", "G")
+    # buttonTypeG=tkinter.ttk.Button(screenVariables, text="G", command=actionTypeG, width=2).place(x=60, y=160)
 
     textShowH = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowH.place(x=85, y=190)
@@ -108,7 +106,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowH.config(text = ""); textShowH.config(text = "= "+str(storeH[0]))
     buttonStoreH=tkinter.ttk.Button(screenVariables, text="Ans=H", command=actionStoreH, width=7).place(x=10, y=185)
-    def actionTypeH(): actionBase("H", 1, storeH[0], len(storeH[0]))
+    def actionTypeH(): inputWindowView.insert("end", "H")
     buttonTypeH=tkinter.ttk.Button(screenVariables, text="H", command=actionTypeH, width=2).place(x=60, y=185)
 
     textShowI = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -120,7 +118,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowI.config(text = ""); textShowI.config(text = "= "+str(storeI[0]))
     buttonStoreI=tkinter.ttk.Button(screenVariables, text="Ans=I", command=actionStoreI, width=7).place(x=10, y=210)
-    def actionTypeI(): actionBase("I", 1, storeI[0], len(storeI[0]))
+    def actionTypeI(): inputWindowView.insert("end", "I")
     buttonTypeI=tkinter.ttk.Button(screenVariables, text="I", command=actionTypeI, width=2).place(x=60, y=210)
 
     textShowJ = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -132,7 +130,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowJ.config(text = ""); textShowJ.config(text = "= "+str(storeJ[0]))
     buttonStoreJ=tkinter.ttk.Button(screenVariables, text="Ans=J", command=actionStoreJ, width=7).place(x=10, y=235)
-    def actionTypeJ(): actionBase("J", 1, storeJ[0], len(storeJ[0]))
+    def actionTypeJ(): inputWindowView.insert("end", "J")
     buttonTypeJ=tkinter.ttk.Button(screenVariables, text="J", command=actionTypeJ, width=2).place(x=60, y=235)
 
     textShowK = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -144,7 +142,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowK.config(text = ""); textShowK.config(text = "= "+str(storeK[0]))
     buttonStoreK=tkinter.ttk.Button(screenVariables, text="Ans=K", command=actionStoreK, width=7).place(x=10, y=260)
-    def actionTypeK(): actionBase("K", 1, storeK[0], len(storeK[0]))
+    def actionTypeK(): inputWindowView.insert("end", "K")
     buttonTypeK=tkinter.ttk.Button(screenVariables, text="K", command=actionTypeK, width=2).place(x=60, y=260)
 
     textShowL = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -156,7 +154,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowL.config(text = ""); textShowL.config(text = "= "+str(storeL[0]))
     buttonStoreL=tkinter.ttk.Button(screenVariables, text="Ans=L", command=actionStoreL, width=7).place(x=10, y=285)
-    def actionTypeL(): actionBase("L", 1, storeL[0], len(storeL[0]))
+    def actionTypeL(): inputWindowView.insert("end", "L")
     buttonTypeL=tkinter.ttk.Button(screenVariables, text="L", command=actionTypeL, width=2).place(x=60, y=285)
 
     textShowM = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -168,20 +166,22 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowM.config(text = ""); textShowM.config(text = "= "+str(storeM[0]))
     buttonStoreM=tkinter.ttk.Button(screenVariables, text="Ans=M", command=actionStoreM, width=7).place(x=10, y=310)
-    def actionTypeM(): actionBase("M", 1, storeM[0], len(storeM[0]))
+    def actionTypeM(): inputWindowView.insert("end", "M")
     buttonTypeM=tkinter.ttk.Button(screenVariables, text="M", command=actionTypeM, width=2).place(x=60, y=310)
 
-    textShowN = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
-    textShowN.place(x=85, y=340)
-    def actionStoreN():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeN.clear()
-        if errorLog == None:
-            storeN.insert(0, outputValue); storeN.insert(1, outputMath)
-        else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
-        textShowN.config(text = ""); textShowN.config(text = "= "+str(storeN[0]))
-    buttonStoreN=tkinter.ttk.Button(screenVariables, text="Ans=N", command=actionStoreN, width=7).place(x=10, y=335)
-    def actionTypeN(): actionBase("N", 1, storeN[0], len(storeN[0]))
-    buttonTypeN=tkinter.ttk.Button(screenVariables, text="N", command=actionTypeN, width=2).place(x=60, y=335)
+    #NOTE removed due to avogadro
+    labelNoN = tkinter.ttk.Label(screenVariables, text="Due to conflicts N is no longer a variable", font=["Verdana", "7"]).place(x=10, y=340)
+    # textShowN = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
+    # textShowN.place(x=85, y=340)
+    # def actionStoreN():
+    #     result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeN.clear()
+    #     if errorLog == None:
+    #         storeN.insert(0, outputValue); storeN.insert(1, outputMath)
+    #     else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
+    #     textShowN.config(text = ""); textShowN.config(text = "= "+str(storeN[0]))
+    # buttonStoreN=tkinter.ttk.Button(screenVariables, text="Ans=N", command=actionStoreN, width=7).place(x=10, y=335)
+    # def actionTypeN(): inputWindowView.insert("end", "N")
+    # buttonTypeN=tkinter.ttk.Button(screenVariables, text="N", command=actionTypeN, width=2).place(x=60, y=335)
 
     textShowO = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowO.place(x=85, y=365)
@@ -192,7 +192,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowO.config(text = ""); textShowO.config(text = "= "+str(storeO[0]))
     buttonStoreO=tkinter.ttk.Button(screenVariables, text="Ans=O", command=actionStoreO, width=7).place(x=10, y=360)
-    def actionTypeO(): actionBase("O", 1, storeO[0], len(storeO[0]))
+    def actionTypeO(): inputWindowView.insert("end", "O")
     buttonTypeO=tkinter.ttk.Button(screenVariables, text="O", command=actionTypeO, width=2).place(x=60, y=360)
 
     textShowP = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -204,7 +204,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowP.config(text = ""); textShowP.config(text = "= "+str(storeP[0]))
     buttonStoreP=tkinter.ttk.Button(screenVariables, text="Ans=P", command=actionStoreP, width=7).place(x=10, y=385)
-    def actionTypeP(): actionBase("P", 1, storeP[0], len(storeP[0]))
+    def actionTypeP(): inputWindowView.insert("end", "P")
     buttonTypeP=tkinter.ttk.Button(screenVariables, text="P", command=actionTypeP, width=2).place(x=60, y=385)
 
     textShowQ = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -216,7 +216,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowQ.config(text = ""); textShowQ.config(text = "= "+str(storeQ[0]))
     buttonStoreQ=tkinter.ttk.Button(screenVariables, text="Ans=Q", command=actionStoreQ, width=7).place(x=10, y=410)
-    def actionTypeQ(): actionBase("Q", 1, storeQ[0], len(storeQ[0]))
+    def actionTypeQ(): inputWindowView.insert("end", "Q")
     buttonTypeQ=tkinter.ttk.Button(screenVariables, text="Q", command=actionTypeQ, width=2).place(x=60, y=410)
 
     textShowR = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -228,7 +228,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowR.config(text = ""); textShowR.config(text = "= "+str(storeR[0]))
     buttonStoreR=tkinter.ttk.Button(screenVariables, text="Ans=R", command=actionStoreR, width=7).place(x=10, y=435)
-    def actionTypeR(): actionBase("R", 1, storeR[0], len(storeR[0]))
+    def actionTypeR(): inputWindowView.insert("end", "R")
     buttonTypeR=tkinter.ttk.Button(screenVariables, text="R", command=actionTypeR, width=2).place(x=60, y=435)
 
     textShowS = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -240,7 +240,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowS.config(text = ""); textShowS.config(text = "= "+str(storeS[0]))
     buttonStoreS=tkinter.ttk.Button(screenVariables, text="Ans=S", command=actionStoreS, width=7).place(x=10, y=460)
-    def actionTypeS(): actionBase("S", 1, storeS[0], len(storeS[0]))
+    def actionTypeS(): inputWindowView.insert("end", "S")
     buttonTypeS=tkinter.ttk.Button(screenVariables, text="S", command=actionTypeS, width=2).place(x=60, y=460)
 
     textShowT = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -252,7 +252,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowT.config(text = ""); textShowT.config(text = "= "+str(storeT[0]))
     buttonStoreT=tkinter.ttk.Button(screenVariables, text="Ans=T", command=actionStoreT, width=7).place(x=10, y=485)
-    def actionTypeT(): actionBase("T", 1, storeT[0], len(storeT[0]))
+    def actionTypeT(): inputWindowView.insert("end", "T")
     buttonTypeT=tkinter.ttk.Button(screenVariables, text="T", command=actionTypeT, width=2).place(x=60, y=485)
 
     textShowU = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -264,7 +264,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowU.config(text = ""); textShowU.config(text = "= "+str(storeU[0]))
     buttonStoreU=tkinter.ttk.Button(screenVariables, text="Ans=U", command=actionStoreU, width=7).place(x=10, y=510)
-    def actionTypeU(): actionBase("U", 1, storeU[0], len(storeU[0]))
+    def actionTypeU(): inputWindowView.insert("end", "U")
     buttonTypeU=tkinter.ttk.Button(screenVariables, text="U", command=actionTypeU, width=2).place(x=60, y=510)
 
     textShowV = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -276,7 +276,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowV.config(text = ""); textShowV.config(text = "= "+str(storeV[0]))
     buttonStoreV=tkinter.ttk.Button(screenVariables, text="Ans=V", command=actionStoreV, width=7).place(x=10, y=535)
-    def actionTypeV(): actionBase("V", 1, storeV[0], len(storeV[0]))
+    def actionTypeV(): inputWindowView.insert("end", "V")
     buttonTypeV=tkinter.ttk.Button(screenVariables, text="V", command=actionTypeV, width=2).place(x=60, y=535)
 
     textShowW = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -288,7 +288,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowW.config(text = ""); textShowW.config(text = "= "+str(storeW[0]))
     buttonStoreW=tkinter.ttk.Button(screenVariables, text="Ans=W", command=actionStoreW, width=7).place(x=10, y=560)
-    def actionTypeW(): actionBase("W", 1, storeW[0], len(storeW[0]))
+    def actionTypeW(): inputWindowView.insert("end", "W")
     buttonTypeW=tkinter.ttk.Button(screenVariables, text="W", command=actionTypeW, width=2).place(x=60, y=560)
 
     textShowX = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -300,7 +300,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowX.config(text = ""); textShowX.config(text = "= "+str(storeX[0]))
     buttonStoreX=tkinter.ttk.Button(screenVariables, text="Ans=X", command=actionStoreX, width=7).place(x=10, y=585)
-    def actionTypeX(): actionBase("X", 1, storeX[0], len(storeX[0]))
+    def actionTypeX(): inputWindowView.insert("end", "X")
     buttonTypeX=tkinter.ttk.Button(screenVariables, text="X", command=actionTypeX, width=2).place(x=60, y=585)
 
     textShowY = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -312,7 +312,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowY.config(text = ""); textShowY.config(text = "= "+str(storeY[0]))
     buttonStoreY=tkinter.ttk.Button(screenVariables, text="Ans=Y", command=actionStoreY, width=7).place(x=10, y=610)
-    def actionTypeY(): actionBase("Y", 1, storeY[0], len(storeY[0]))
+    def actionTypeY(): inputWindowView.insert("end", "Y")
     buttonTypeY=tkinter.ttk.Button(screenVariables, text="Y", command=actionTypeY, width=2).place(x=60, y=610)
 
     textShowZ = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
@@ -324,7 +324,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
         textShowZ.config(text = ""); textShowZ.config(text = "= "+str(storeZ[0]))
     buttonStoreZ=tkinter.ttk.Button(screenVariables, text="Ans=Z", command=actionStoreZ, width=7).place(x=10, y=635)
-    def actionTypeZ(): actionBase("Z", 1, storeZ[0], len(storeZ[0]))
+    def actionTypeZ(): inputWindowView.insert("end", "Z")
     buttonTypeZ=tkinter.ttk.Button(screenVariables, text="Z", command=actionTypeZ, width=2).place(x=60, y=635)
     
     screenVariables.mainloop()
