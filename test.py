@@ -21,6 +21,8 @@ registerInjection = False
 
 mathRegistry = False
 
+mathRegex = False
+
 if loginCheck == True:
     users = [
         {'userName': 'Admin', 'userPassword': 'P@$$w0rd'},
@@ -61,7 +63,7 @@ if letterprinter == True:
         print(f'            else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))')
         print(f'            textShow{letter}.config(text = ""); textShow{letter}.config(text = "= "+str(store{letter}[0]))')
         print(f'        buttonStore{letter}=tkinter.ttk.Button(screenVariables, text="Ans={letter}", command=actionStore{letter}, width=7).place(x=10, y={10+25*i})')
-        print(f'        def actionType{letter}(): actionBase("{letter}", 1, store{letter}[0], len(store{letter}[0]))')
+        print(f'        def actionType{letter}(): inputWindowView.insert("end", "{letter}")')
         print(f'        buttonType{letter}=tkinter.ttk.Button(screenVariables, text="{letter}", command=actionType{letter}, width=2).place(x=60, y={10+25*i})')
         print(f'')
         i += 1
@@ -170,3 +172,43 @@ if mathRegistry == True:
         screen.mainloop()
 
     windowTesting()
+
+if mathRegex == True:
+    operatorlist = ["*", "/", "+", "-", "(", ")"]
+    txt = ["\u221a(2*2)", ")*\u221a(", "2*2"]
+
+    def mathChecker():
+        for line in txt:
+            x = re.findall("(.)c(.)", line)
+            if not x: return
+            y = x[0]
+            # print(y[0], y[1], type(y), len(y))
+            if y[0] in operatorlist and y[1] in operatorlist:
+                print(f"The c in {line} was found to be lightspeed")
+            else:
+                print(f"The c in {line} was found not to be lightspeed")
+
+    def mathReplacer():
+
+        def constantReplacer(line, target, replacement):
+            cleanTarget = re.escape(target)
+            line = re.sub(rf'([\+\-\*/\(]){cleanTarget}([\+\-\*/\)])', rf'\1{replacement}\2', line)
+            line = re.sub(rf'([\+\-\*/\(]){cleanTarget}\b', rf'\1{replacement}', line)
+            line = re.sub(rf'\b{cleanTarget}([\+\-\*/\)])', rf'{replacement}\1', line)
+            line = re.sub(rf'\b{cleanTarget}\b', rf'{replacement}', line)
+            return line
+        
+        print('------======------')
+        print('√ => math.sqrt')
+        for line in txt:
+            line = line.replace('√', 'math.sqrt')
+            #line = constantReplacer(line, '√', 'math.sqrt')
+            print(line)
+        
+        # print('------======------')
+        # print('cos => math.cos')
+        # for line in txt:
+        #     line = constantReplacer(line, 'cos', 'math.cos')
+        #     print(line)
+    
+    mathReplacer()
