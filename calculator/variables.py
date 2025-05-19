@@ -7,7 +7,7 @@ storeV = ['', '']; storeW = ['', '']; storeX = ['', '']; storeY = ['', '']; stor
 
 insertListView = []
 
-debug = False
+debug = True
 
 def debugger(message):
     if debug == True:
