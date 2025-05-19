@@ -2,7 +2,7 @@ import tkinter
 
 from variables import storeA, storeB, storeC, storeD, storeE, storeF, storeG, storeH, storeI, storeJ, storeK, storeL, storeM, storeN, storeO, storeP, storeQ, storeR, storeS, storeT, storeU, storeV, storeW, storeX, storeY, storeZ
 
-def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
+def screenVariablesDef(inputWindowView, actionCalculate):
     screenVariables = tkinter.Tk()
     screenVariables.title("Variables")
     screenVariables.geometry("250x665+860+200")
@@ -14,7 +14,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowA = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowA.place(x=85, y=15)
     def actionStoreA():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeA.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeA.clear()
         if errorLog == None:
             storeA.insert(0, outputValue); storeA.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -26,7 +26,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowB = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowB.place(x=85, y=40)
     def actionStoreB():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeB.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeB.clear()
         if errorLog == None:
             storeB.insert(0, outputValue); storeB.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -38,7 +38,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowC = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowC.place(x=85, y=65)
     def actionStoreC():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeC.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeC.clear()
         if errorLog == None:
             storeC.insert(0, outputValue); storeC.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -50,7 +50,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowD = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowD.place(x=85, y=90)
     def actionStoreD():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeD.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeD.clear()
         if errorLog == None:
             storeD.insert(0, outputValue); storeD.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -62,7 +62,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowE = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowE.place(x=85, y=115)
     def actionStoreE():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeE.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeE.clear()
         if errorLog == None:
             storeE.insert(0, outputValue); storeE.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -74,7 +74,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowF = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowF.place(x=85, y=140)
     def actionStoreF():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeF.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeF.clear()
         if errorLog == None:
             storeF.insert(0, outputValue); storeF.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -84,11 +84,11 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     buttonTypeF=tkinter.ttk.Button(screenVariables, text="F", command=actionTypeF, width=2).place(x=60, y=135)
 
     #NOTE removed due to gravity
-    labelNoG = tkinter.ttk.Label(screenVariables, text="Due to conflicts G is no longer a variable", font=["Verdana", "7"]).place(x=10, y=340)
+    labelNoG = tkinter.ttk.Label(screenVariables, text="Due to conflicts G is no longer a variable", font=["Verdana", "7"]).place(x=10, y=160)
     # textShowG = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     # textShowG.place(x=85, y=165)
     # def actionStoreG():
-    #     result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeG.clear()
+    #     result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeG.clear()
     #     if errorLog == None:
     #         storeG.insert(0, outputValue); storeG.insert(1, outputMath)
     #     else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -100,7 +100,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowH = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowH.place(x=85, y=190)
     def actionStoreH():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeH.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeH.clear()
         if errorLog == None:
             storeH.insert(0, outputValue); storeH.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -112,7 +112,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowI = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowI.place(x=85, y=215)
     def actionStoreI():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeI.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeI.clear()
         if errorLog == None:
             storeI.insert(0, outputValue); storeI.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -124,7 +124,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowJ = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowJ.place(x=85, y=240)
     def actionStoreJ():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeJ.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeJ.clear()
         if errorLog == None:
             storeJ.insert(0, outputValue); storeJ.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -136,7 +136,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowK = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowK.place(x=85, y=265)
     def actionStoreK():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeK.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeK.clear()
         if errorLog == None:
             storeK.insert(0, outputValue); storeK.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -148,7 +148,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowL = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowL.place(x=85, y=290)
     def actionStoreL():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeL.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeL.clear()
         if errorLog == None:
             storeL.insert(0, outputValue); storeL.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -160,7 +160,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowM = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowM.place(x=85, y=315)
     def actionStoreM():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeM.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeM.clear()
         if errorLog == None:
             storeM.insert(0, outputValue); storeM.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -174,7 +174,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     # textShowN = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     # textShowN.place(x=85, y=340)
     # def actionStoreN():
-    #     result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeN.clear()
+    #     result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeN.clear()
     #     if errorLog == None:
     #         storeN.insert(0, outputValue); storeN.insert(1, outputMath)
     #     else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -186,7 +186,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowO = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowO.place(x=85, y=365)
     def actionStoreO():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeO.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeO.clear()
         if errorLog == None:
             storeO.insert(0, outputValue); storeO.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -198,7 +198,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowP = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowP.place(x=85, y=390)
     def actionStoreP():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeP.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeP.clear()
         if errorLog == None:
             storeP.insert(0, outputValue); storeP.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -210,7 +210,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowQ = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowQ.place(x=85, y=415)
     def actionStoreQ():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeQ.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeQ.clear()
         if errorLog == None:
             storeQ.insert(0, outputValue); storeQ.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -222,7 +222,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowR = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowR.place(x=85, y=440)
     def actionStoreR():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeR.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeR.clear()
         if errorLog == None:
             storeR.insert(0, outputValue); storeR.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -234,7 +234,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowS = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowS.place(x=85, y=465)
     def actionStoreS():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeS.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeS.clear()
         if errorLog == None:
             storeS.insert(0, outputValue); storeS.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -246,7 +246,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowT = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowT.place(x=85, y=490)
     def actionStoreT():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeT.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeT.clear()
         if errorLog == None:
             storeT.insert(0, outputValue); storeT.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -258,7 +258,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowU = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowU.place(x=85, y=515)
     def actionStoreU():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeU.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeU.clear()
         if errorLog == None:
             storeU.insert(0, outputValue); storeU.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -270,7 +270,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowV = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowV.place(x=85, y=540)
     def actionStoreV():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeV.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeV.clear()
         if errorLog == None:
             storeV.insert(0, outputValue); storeV.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -282,7 +282,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowW = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowW.place(x=85, y=565)
     def actionStoreW():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeW.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeW.clear()
         if errorLog == None:
             storeW.insert(0, outputValue); storeW.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -294,7 +294,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowX = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowX.place(x=85, y=590)
     def actionStoreX():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeX.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeX.clear()
         if errorLog == None:
             storeX.insert(0, outputValue); storeX.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -306,7 +306,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowY = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowY.place(x=85, y=615)
     def actionStoreY():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeY.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeY.clear()
         if errorLog == None:
             storeY.insert(0, outputValue); storeY.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))
@@ -318,7 +318,7 @@ def screenVariablesDef(inputWindowView, inputWindowMath, actionCalculate):
     textShowZ = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])
     textShowZ.place(x=85, y=640)
     def actionStoreZ():
-        result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeZ.clear()
+        result = actionCalculate(inputWindowView); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; storeZ.clear()
         if errorLog == None:
             storeZ.insert(0, outputValue); storeZ.insert(1, outputMath)
         else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))

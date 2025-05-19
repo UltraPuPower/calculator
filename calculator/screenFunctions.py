@@ -1,6 +1,6 @@
 import tkinter
 
-def screenFunctionsDef(inputWindowView, inputWindowMath):
+def screenFunctionsDef(inputWindowView):
 
     screenFunctions = tkinter.Tk()
     screenFunctions.title("Functions")
