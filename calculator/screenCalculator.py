@@ -38,7 +38,7 @@ def screenCalculatorDef():
     windowInputCalculatorView.place(x=10, y=10)
 
     tkinter.ttk.Label(screenCalculator, text="Calculator by UltraPuPower1\ninspired by:\nCalculator by 刘键明", font=["Verdana", "9"]).place(x=5, y=210)
-    tkinter.ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV0.1", font=["Verdana", "7"]).place(x=5, y=550)
+    tkinter.ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV1.0", font=["Verdana", "7"]).place(x=5, y=550)
     tkinter.ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=1, y=65, height=135, width=5)
     tkinter.ttk.Separator(screenCalculator, orient=tkinter.HORIZONTAL).place(x=2, y=65, height=5, width=195)
     tkinter.ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=195, y=65, height=135, width=5)
@@ -132,24 +132,23 @@ def screenCalculatorDef():
     def actionLog(): windowInputCalculatorView.insert("end", "log10(")
     buttonLog=tkinter.ttk.Button(screenCalculator, text="log", command=actionLog, width=3).place(x=160, y=145)
 
-    def storeAns(valPrint, valMath):
+    def storeAns(valPrint):
         valAnsView.clear()
         valAnsView.insert(0, valPrint)
 
     def actionDisplayCalculation():
         result = actionCalculate(windowInputCalculatorView)
         outputValue = result[0]
-        outputMath = result[1]
-        errorLog = result[2]
+        errorLog = result[1]
         if errorLog == None:
             windowOutputCalculator.config(text = "")
             windowOutputCalculator.config(text = "= "+str(outputValue))
-            storeAns(outputValue, outputMath)
+            storeAns(outputValue)
         else:
-            print("printing error")
+            debugger("printing error")
             windowOutputCalculator.config(text = "")
             tkinter.messagebox.showerror(title="Error", message=str(errorLog))
-            storeAns('', '')
+            storeAns('0')
     buttonCalculate=tkinter.ttk.Button(screenCalculator, text="=", command=actionDisplayCalculation, width=3).place(x=10, y=170)
 
     def actionAns(): windowInputCalculatorView.insert("end", "Ans")

@@ -55,7 +55,7 @@ def screenLoginDef(calculatorDef, welcomeDef):
         attemptPassword = passwordEntry.get()
 
         if loadUser(attemptUsername, attemptPassword)[0]:
-            tkinter.messagebox.showinfo(title="Beware", message="Calculator not fully operational, there may be bugs.")
+            tkinter.messagebox.showinfo(title="Beware", message="The Calculator is in release 1.0.\nIf you experience any bugs, please contact the developers.")
             screenLogin.destroy()
             calculatorDef()
         elif not loadUser(attemptUsername, attemptPassword)[0] and loadUser(attemptUsername, attemptPassword)[1]:

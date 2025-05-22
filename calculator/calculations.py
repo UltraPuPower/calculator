@@ -29,20 +29,20 @@ def mathReplacer(input):
     #constants
     for filter in [{"t": 'π', "r": 'math.pi'}, {"t": 'e', "r": 'math.e'}, {"t": 'τ', "r": 'math.tau'}, {"t": 'φ', "r": '((1+math.sqrt(5))/2)'},
                    {"t": 'c', "r": '(2.99792458*10**8)'}, {"t": 'h', "r": '(6.62607015*10**-34)'}, {"t": 'G', "r": '(6.67430*10**-11)'},
-                   {"t": 'g', "r": '(9.81)'}, {"t": 'k', "r": '(1.380649*10**-23)'}, {"t": 'N', "r": '(6.02214076*10**23)'},
+                   {"t": 'g', "r": '(9.81)'}, {"t": 'k', "r": '(1.380649*10**-23)'}, {"t": 'Na', "r": '(6.02214076*10**23)'},
                    {"t": 'eV', "r": '(1.602176634*10**-19)'}]:
         input = constantReplacer(input, filter["t"], filter["r"])
 
     #stored variables
     for filter in [{"t": 'Ans', "r": f'({valAnsView})'},
-                {'t': 'A', 'r': str(storeA[1])}, {'t': 'B', 'r': str(storeB[1])}, {'t': 'C', 'r': str(storeC[1])}, {'t': 'D', 'r': str(storeD[1])},
-                {'t': 'E', 'r': str(storeE[1])}, {'t': 'F', 'r': str(storeF[1])}, {'t': 'G', 'r': str(storeG[1])}, {'t': 'H', 'r': str(storeH[1])},
-                {'t': 'I', 'r': str(storeI[1])}, {'t': 'J', 'r': str(storeJ[1])}, {'t': 'K', 'r': str(storeK[1])}, {'t': 'L', 'r': str(storeL[1])},
-                {'t': 'M', 'r': str(storeM[1])}, {'t': 'N', 'r': str(storeN[1])}, {'t': 'O', 'r': str(storeO[1])}, {'t': 'P', 'r': str(storeP[1])},
-                {'t': 'Q', 'r': str(storeQ[1])}, {'t': 'R', 'r': str(storeR[1])}, {'t': 'S', 'r': str(storeS[1])}, {'t': 'T', 'r': str(storeT[1])},
-                {'t': 'U', 'r': str(storeU[1])}, {'t': 'V', 'r': str(storeV[1])}, {'t': 'W', 'r': str(storeW[1])}, {'t': 'X', 'r': str(storeX[1])}, 
-                {'t': 'Y', 'r': str(storeY[1])}, {'t': 'Z', 'r': str(storeZ[1])}]:
-        input = constantReplacer(input, filter["t"], filter["r"])
+                {'t': 'A', 'r': str(storeA[0])}, {'t': 'B', 'r': str(storeB[0])}, {'t': 'C', 'r': str(storeC[0])}, {'t': 'D', 'r': str(storeD[0])},
+                {'t': 'E', 'r': str(storeE[0])}, {'t': 'F', 'r': str(storeF[0])}, {'t': 'G', 'r': str(storeG[0])}, {'t': 'H', 'r': str(storeH[0])},
+                {'t': 'I', 'r': str(storeI[0])}, {'t': 'J', 'r': str(storeJ[0])}, {'t': 'K', 'r': str(storeK[0])}, {'t': 'L', 'r': str(storeL[0])},
+                {'t': 'M', 'r': str(storeM[0])}, {'t': 'N', 'r': str(storeN[0])}, {'t': 'O', 'r': str(storeO[0])}, {'t': 'P', 'r': str(storeP[0])},
+                {'t': 'Q', 'r': str(storeQ[0])}, {'t': 'R', 'r': str(storeR[0])}, {'t': 'S', 'r': str(storeS[0])}, {'t': 'T', 'r': str(storeT[0])},
+                {'t': 'U', 'r': str(storeU[0])}, {'t': 'V', 'r': str(storeV[0])}, {'t': 'W', 'r': str(storeW[0])}, {'t': 'X', 'r': str(storeX[0])}, 
+                {'t': 'Y', 'r': str(storeY[0])}, {'t': 'Z', 'r': str(storeZ[0])}]:
+        input = input.replace(filter["t"], filter["r"])
 
     debugger(f"converted {savedInput} into {input}")
     return(input)
@@ -81,9 +81,9 @@ def actionCalculate(inputWindow):
         outputMath = 0
 
     if errorLog == None:
-        returnVal = [outputValue, outputMath, None]
-        debugger(f'Calculation successful => Output: {returnVal[0]}, Math: {returnVal[1]}')
+        returnVal = [outputValue, None]
+        debugger(f'Calculation successful => Output: {returnVal[0]}')
     else:
-        returnVal = ['', '', errorLog]
-        debugger(f'Error in calculation => Error: {returnVal[2]}')
+        returnVal = ['', errorLog]
+        debugger(f'Error in calculation => Error: {returnVal[1]}')
     return returnVal

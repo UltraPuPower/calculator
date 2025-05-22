@@ -33,30 +33,30 @@ def screenConstantsDef(inputWindowView):
 
     def actionLight(): inputWindowView.insert("end", "c")
     buttonLight=tkinter.ttk.Button(screenConstants, text="c", command=actionLight, width=3).place(x=5, y=65)
-    tkinter.ttk.Label(screenConstants, text="Speed of Light").place(x=30, y=70)
+    tkinter.ttk.Label(screenConstants, text="Speed of Light").place(x=35, y=70)
 
     def actionPlanck(): inputWindowView.insert("end", "h")
     buttonPlanck=tkinter.ttk.Button(screenConstants, text="h", command=actionPlanck, width=3).place(x=5, y=90)
-    tkinter.ttk.Label(screenConstants, text="Planck Constant").place(x=30, y=95)
+    tkinter.ttk.Label(screenConstants, text="Planck Constant").place(x=35, y=95)
 
     def actionGravityConst(): inputWindowView.insert("end", "G")
     buttonGravityConst=tkinter.ttk.Button(screenConstants, text="G", command=actionGravityConst, width=3).place(x=5, y=115)
-    tkinter.ttk.Label(screenConstants, text="Gravitation Constant").place(x=30, y=120)
+    tkinter.ttk.Label(screenConstants, text="Gravitation Constant").place(x=35, y=120)
 
     def actionGravity(): inputWindowView.insert("end", "g")
     buttonGravity=tkinter.ttk.Button(screenConstants, text="g", command=actionGravity, width=3).place(x=5, y=140)
-    tkinter.ttk.Label(screenConstants, text="Gravitational Acceleration (NL)").place(x=30, y=145)
+    tkinter.ttk.Label(screenConstants, text="Gravitational Acceleration (NL)").place(x=35, y=145)
 
     def actionBoltzmann(): inputWindowView.insert("end", "k")
     buttonBoltzmann=tkinter.ttk.Button(screenConstants, text="k", command=actionBoltzmann, width=3).place(x=5, y=165)
-    tkinter.ttk.Label(screenConstants, text="Boltzmann Constant").place(x=30, y=170)
+    tkinter.ttk.Label(screenConstants, text="Boltzmann Constant").place(x=35, y=170)
 
-    def actionAvogadro(): inputWindowView.insert("end", "N")
-    buttonAvogadro=tkinter.ttk.Button(screenConstants, text="N", command=actionAvogadro, width=3).place(x=5, y=190)
-    tkinter.ttk.Label(screenConstants, text="Avogadro Constant").place(x=30, y=195)
+    def actionAvogadro(): inputWindowView.insert("end", "Na")
+    buttonAvogadro=tkinter.ttk.Button(screenConstants, text="Na", command=actionAvogadro, width=3).place(x=5, y=190)
+    tkinter.ttk.Label(screenConstants, text="Avogadro Constant").place(x=35, y=195)
 
     def actionElementalChargeQuantum(): inputWindowView.insert("end", "eV")
     buttonElementalChargeQuantum=tkinter.ttk.Button(screenConstants, text="eV", command=actionElementalChargeQuantum, width=3).place(x=5, y=215)
-    tkinter.ttk.Label(screenConstants, text="Elementary Charge").place(x=30, y=220)
+    tkinter.ttk.Label(screenConstants, text="Elementary Charge").place(x=35, y=220)
 
     screenConstants.mainloop()

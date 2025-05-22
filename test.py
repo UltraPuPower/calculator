@@ -13,7 +13,7 @@ loginCheck = False
 
 alphabetPrinter = False
 
-letterprinter = False
+letterprinter = True
 
 userDataTest = False
 
@@ -23,7 +23,7 @@ mathRegistry = False
 
 mathRegex = False
 
-sinBug = True
+sinBug = False
 
 if loginCheck == True:
     users = [
@@ -56,17 +56,16 @@ if letterprinter == True:
     i = 0
     nextRow = False
     for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']:
-        print(f'        textShow{letter} = tkinter.ttk.Label(screenVariables, text="", font=["Verdana", "7"])')
-        print(f'        textShow{letter}.place(x=85, y={15+25*i})')
-        print(f'        def actionStore{letter}():')
-        print(f'            result = actionCalculate(inputWindowMath); outputValue = result[0]; outputMath = result[1]; errorLog = result[2]; store{letter}.clear()')
-        print(f'            if errorLog == None:')
-        print(f'                store{letter}.insert(0, outputValue); store{letter}.insert(1, outputMath)')
-        print(f'            else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))')
-        print(f'            textShow{letter}.config(text = ""); textShow{letter}.config(text = "= "+str(store{letter}[0]))')
-        print(f'        buttonStore{letter}=tkinter.ttk.Button(screenVariables, text="Ans={letter}", command=actionStore{letter}, width=7).place(x=10, y={10+25*i})')
-        print(f'        def actionType{letter}(): inputWindowView.insert("end", "{letter}")')
-        print(f'        buttonType{letter}=tkinter.ttk.Button(screenVariables, text="{letter}", command=actionType{letter}, width=2).place(x=60, y={10+25*i})')
+        print(f'    textShow{letter} = tkinter.ttk.Label(screenVariables, text="= "+str(store{letter}[0]), font=["Verdana", "7"])')
+        print(f'    textShow{letter}.place(x=85, y={15+25*i})')
+        print(f'    def actionStore{letter}():')
+        print(f'        result = actionCalculate(inputWindowView); outputValue = result[0]; errorLog = result[1]; store{letter}.clear()')
+        print(f'        if errorLog == None: store{letter}.insert(0, outputValue)')
+        print(f'        else: tkinter.messagebox.showerror(title="Error", message=str(errorLog))')
+        print(f'        textShow{letter}.config(text = ""); textShow{letter}.config(text = "= "+str(store{letter}[0]))')
+        print(f'    buttonStore{letter}=tkinter.ttk.Button(screenVariables, text="Ans={letter}", command=actionStore{letter}, width=7).place(x=10, y={10+25*i})')
+        print(f'    def actionType{letter}(): inputWindowView.insert("end", "{letter}")')
+        print(f'    buttonType{letter}=tkinter.ttk.Button(screenVariables, text="{letter}", command=actionType{letter}, width=2).place(x=60, y={10+25*i})')
         print(f'')
         i += 1
 
