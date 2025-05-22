@@ -12,10 +12,7 @@ def mathReplacer(input):
 
     def constantReplacer(line, target, replacement):
         cleanTarget = re.escape(target)
-        line = re.sub(rf'([\+\-\*/\(]){cleanTarget}([\+\-\*/\)])', rf'\1{replacement}\2', line)
-        line = re.sub(rf'\b{cleanTarget}([\+\-\*/\)])', rf'{replacement}\1', line)
-        line = re.sub(rf'([\+\-\*/\(]){cleanTarget}\b', rf'\1{replacement}', line)
-        line = re.sub(rf'\b{cleanTarget}\b', rf'{replacement}', line)
+        line = re.sub(rf'(^|[\+\-\*/\(]){cleanTarget}([\+\-\*/\)\(]|$)', rf'\1{replacement}\2', line)
         return line
     
     #operators
