@@ -3,17 +3,17 @@ import tkinter.ttk
 
 import re
 
-debugger = True
+debug = True
 
-def debug(message):
-    if debugger == True:
+def debugger(message):
+    if debug == True:
         print(message)
 
 loginCheck = False
 
 alphabetPrinter = False
 
-letterprinter = True
+letterprinter = False
 
 userDataTest = False
 
@@ -22,6 +22,8 @@ registerInjection = False
 mathRegistry = False
 
 mathRegex = False
+
+sinBug = True
 
 if loginCheck == True:
     users = [
@@ -132,8 +134,8 @@ if mathRegistry == True:
             windowInputCalculatorMath.insert("end", mathInput)
             insertListView.append(viewLength)
             insertListMath.append(mathLength)
-            debug(f'View:{insertListView}')
-            debug(f'Math:{insertListMath}')
+            debugger(f'View:{insertListView}')
+            debugger(f'Math:{insertListMath}')
 
         def actionPi(): actionBase("π", 1, "math.pi", 7)
         buttonPi = tkinter.ttk.Button(screen, text="π", command=actionPi, width=3).place(x=10, y=120)
@@ -151,22 +153,22 @@ if mathRegistry == True:
                 window.delete("0", "end")
                 window.insert("end", cutViewString)
             except IndexError:
-                debug("No more items to delete.")
+                debugger("No more items to delete.")
     
         def actionBackspace():
             actionBackspacer(windowInputCalculatorView, insertListView)
             actionBackspacer(windowInputCalculatorMath, insertListMath)
-            debug(f'View:{insertListView}')
-            debug(f'Math:{insertListMath}')
+            debugger(f'View:{insertListView}')
+            debugger(f'Math:{insertListMath}')
         buttonBackspace=tkinter.ttk.Button(screen, text="del", command=actionBackspace, width=3).place(x=110, y=70)
 
         def actionViewCheck():
             viewString = windowInputCalculatorView.get()
             mathString = windowInputCalculatorMath.get()
-            debug('------======------')
-            debug(f'View:{viewString}')
-            debug(f'Math:{mathString}')
-            debug('------======------')
+            debugger('------======------')
+            debugger(f'View:{viewString}')
+            debugger(f'Math:{mathString}')
+            debugger('------======------')
         buttonBackspace=tkinter.ttk.Button(screen, text="Check", command=actionViewCheck, width=5).place(x=110, y=110)
 
         screen.mainloop()
@@ -212,3 +214,62 @@ if mathRegex == True:
         #     print(line)
     
     mathReplacer()
+
+if sinBug == True:
+    def mathReplacer(input):
+
+        savedInput = input
+
+        def constantReplacerClean(line, target, replacement):
+            cleanTarget = re.escape(target)
+            line = re.sub(rf'([\+\-\*/\(]){cleanTarget}([\+\-\*/\)\(])', rf'\1{replacement}\2', line)
+            line = re.sub(rf'\b{cleanTarget}([\+\-\*/\)])', rf'{replacement}\1', line)
+            line = re.sub(rf'([\+\-\*/\(]){cleanTarget}\b', rf'\1{replacement}', line)
+            line = re.sub(rf'\b{cleanTarget}\b', rf'{replacement}', line)
+            return line
+
+        def constantReplacer1(line, target, replacement):
+            cleanTarget = re.escape(target)
+            line = re.sub(rf'([\+\-\*/\(]){cleanTarget}([\+\-\*/\)\(])', rf'\1{replacement}\2-triggered first', line)
+            line = re.sub(rf'\b{cleanTarget}([\+\-\*/\)])', rf'{replacement}\1-triggered second', line)
+            line = re.sub(rf'([\+\-\*/\(]){cleanTarget}\b', rf'\1{replacement}-triggered third', line)
+            line = re.sub(rf'\b{cleanTarget}\b', rf'{replacement}-triggered fourth', line)
+            return line
+
+        def constantReplacer2(line, target, replacement):
+            cleanTarget = re.escape(target)
+            line = re.sub(rf'(^|[\+\-\*/\(]){cleanTarget}([\+\-\*/\)\(]|$)', rf'\1{replacement}\2', line)
+            return line
+        
+        #operators
+        for filter in [{"t": '×', "r": '*'}, {"t": '^', "r": '**'}, {"t": '÷', "r": '/'}, {"t": '√', "r": 'math.sqrt'}]:
+            input = input.replace(filter["t"], filter["r"])
+
+        #advanced operators
+        # add exception for log that allows numbers right after
+        for filter in [{"t": 'sin', "r": 'math.sin'}, {"t": 'cos', "r": 'math.cos'}, {"t": 'tan', "r": 'math.tan'},
+                    {"t": 'asin', "r": 'math.asin'}, {"t": 'acos', "r": 'math.acos'}, {"t": 'atan', "r": 'math.atan'},
+                    {"t": 'asinh', "r": 'math.asinh'}, {"t": 'acosh', "r": 'math.acosh'}, {"t": 'atanh', "r": 'math.atanh'}]:
+            input = constantReplacer2(input, filter["t"], filter["r"])
+
+        #constants
+        for filter in [{"t": 'π', "r": 'math.pi'}, {"t": 'e', "r": 'math.e'}, {"t": 'τ', "r": 'math.tau'}, {"t": 'φ', "r": '((1+math.sqrt(5))/2)'},
+                    {"t": 'c', "r": '(2.99792458*10**8)'}, {"t": 'h', "r": '(6.62607015*10**-34)'}, {"t": 'G', "r": '(6.67430*10**-11)'},
+                    {"t": 'g', "r": '(9.81)'}, {"t": 'k', "r": '(1.380649*10**-23)'}, {"t": 'N', "r": '(6.02214076*10**23)'},
+                    {"t": 'eV', "r": '(1.602176634*10**-19)'}]:
+            input = constantReplacerClean(input, filter["t"], filter["r"])
+
+        idTest = False
+        if re.search(r'.*math.cos.*', input):
+            idTest = True
+        debugger(f"converted [{savedInput}] into [{input}] => {idTest}")
+        return(input)
+    
+    print('First:')
+    mathReplacer("1+2×cos(π)+1")
+    print('Two:')
+    mathReplacer("cos(π)+1")
+    print('Third:')
+    mathReplacer("1+2×cos")
+    print('Four:')
+    mathReplacer("cos")
