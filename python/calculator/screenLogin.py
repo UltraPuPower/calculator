@@ -3,11 +3,10 @@ import tkinter.ttk
 import tkinter.messagebox
 import re
 import hashlib
-import os
-
-# current working directory
 
 from screenCalculator import screenCalculatorDef
+
+from variables import loggedIn, filepath
 
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
@@ -15,7 +14,6 @@ def passwordHash(password):
    return hash_object.hexdigest()
 
 def screenLoginDef(calculatorDef, welcomeDef):
-    filepath = os.path.dirname(__file__)
 
     screenLogin = tkinter.Tk()
     screenLogin.title("Login")
@@ -56,6 +54,7 @@ def screenLoginDef(calculatorDef, welcomeDef):
 
         if loadUser(attemptUsername, attemptPassword)[0]:
             tkinter.messagebox.showinfo(title="Beware", message="The Calculator is in release 1.0.\nIf you experience any bugs, please contact the developers.")
+            loggedIn.setState(True)
             screenLogin.destroy()
             calculatorDef()
         elif not loadUser(attemptUsername, attemptPassword)[0] and loadUser(attemptUsername, attemptPassword)[1]:
