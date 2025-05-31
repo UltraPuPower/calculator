@@ -14,10 +14,6 @@ def mathReplacer(input):
         cleanTarget = re.escape(target)
         line = re.sub(rf'(^|[\+\-\*/\(]){cleanTarget}([\+\-\*/\)\(]|$)', rf'\1{replacement}\2', line)
         return line
-    
-    #operators
-    for filter in [{"t": '×', "r": '*'}, {"t": '^', "r": '**'}, {"t": '÷', "r": '/'}, {"t": '√', "r": 'math.sqrt'}]:
-        input = input.replace(filter["t"], filter["r"])
 
     #advanced operators
     # add exception for log that allows numbers right after
@@ -34,7 +30,7 @@ def mathReplacer(input):
         input = constantReplacer(input, filter["t"], filter["r"])
 
     #stored variables
-    for filter in [{"t": 'Ans', "r": f'({valAnsView})'},
+    for filter in [{"t": 'Ans', "r": f'({valAnsView[0]})'},
                 {'t': 'A', 'r': str(storeA[0])}, {'t': 'B', 'r': str(storeB[0])}, {'t': 'C', 'r': str(storeC[0])}, {'t': 'D', 'r': str(storeD[0])},
                 {'t': 'E', 'r': str(storeE[0])}, {'t': 'F', 'r': str(storeF[0])}, {'t': 'G', 'r': str(storeG[0])}, {'t': 'H', 'r': str(storeH[0])},
                 {'t': 'I', 'r': str(storeI[0])}, {'t': 'J', 'r': str(storeJ[0])}, {'t': 'K', 'r': str(storeK[0])}, {'t': 'L', 'r': str(storeL[0])},
@@ -42,6 +38,10 @@ def mathReplacer(input):
                 {'t': 'Q', 'r': str(storeQ[0])}, {'t': 'R', 'r': str(storeR[0])}, {'t': 'S', 'r': str(storeS[0])}, {'t': 'T', 'r': str(storeT[0])},
                 {'t': 'U', 'r': str(storeU[0])}, {'t': 'V', 'r': str(storeV[0])}, {'t': 'W', 'r': str(storeW[0])}, {'t': 'X', 'r': str(storeX[0])}, 
                 {'t': 'Y', 'r': str(storeY[0])}, {'t': 'Z', 'r': str(storeZ[0])}]:
+        input = input.replace(filter["t"], filter["r"])
+    
+    #operators
+    for filter in [{"t": '×', "r": '*'}, {"t": '^', "r": '**'}, {"t": '÷', "r": '/'}, {"t": '√', "r": 'math.sqrt'}]:
         input = input.replace(filter["t"], filter["r"])
 
     debugger(f"converted {savedInput} into {input}")

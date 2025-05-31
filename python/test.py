@@ -6,14 +6,14 @@ import re
 debug = True
 
 def debugger(message):
-    if debug == True:
+    if debug:
         print(message)
 
 loginCheck = False
 
 alphabetPrinter = False
 
-letterprinter = True
+letterprinter = False
 
 userDataTest = False
 
@@ -25,7 +25,11 @@ mathRegex = False
 
 sinBug = False
 
-if loginCheck == True:
+langImports = False
+
+dropDown = True
+
+if loginCheck:
     users = [
         {'userName': 'Admin', 'userPassword': 'P@$$w0rd'},
         {'userName': 'User1', 'userPassword': 'password'}
@@ -42,7 +46,7 @@ if loginCheck == True:
     print(loginCheck('Admin', 'P@$$w0rd'))
 
 
-if alphabetPrinter == True:
+if alphabetPrinter:
     text = '['
     for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']:
         text += f"{{'mesh': '{letter}', 'new': str({letter}[1])}}"
@@ -52,7 +56,7 @@ if alphabetPrinter == True:
     print(text)
 
 
-if letterprinter == True:
+if letterprinter:
     i = 0
     nextRow = False
     for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']:
@@ -69,7 +73,7 @@ if letterprinter == True:
         print(f'')
         i += 1
 
-if userDataTest == True:
+if userDataTest:
     users = [
         {'userName': 'Admin', 'userPassword': 'P@$$w0rd'},
         {'userName': 'User1', 'userPassword': 'password'}
@@ -104,7 +108,7 @@ if userDataTest == True:
     
     print(loadUser('Admin', 'P@$$w0rd'))
 
-if registerInjection == True:
+if registerInjection:
     y = input("Enter your username: ")
     print(y)
     if re.search(r"[^a-zA-Z0-9]", y):
@@ -112,7 +116,7 @@ if registerInjection == True:
     else:
         print("Valid username.")
 
-if mathRegistry == True:
+if mathRegistry:
     def windowTesting():
         insertListView = []
         insertListMath = []
@@ -174,7 +178,7 @@ if mathRegistry == True:
 
     windowTesting()
 
-if mathRegex == True:
+if mathRegex:
     operatorlist = ["*", "/", "+", "-", "(", ")"]
     txt = ["\u221a(2*2)", ")*\u221a(", "2*2"]
 
@@ -214,7 +218,7 @@ if mathRegex == True:
     
     mathReplacer()
 
-if sinBug == True:
+if sinBug:
     def mathReplacer(input):
 
         savedInput = input
@@ -272,3 +276,59 @@ if sinBug == True:
     mathReplacer("1+2×cos")
     print('Four:')
     mathReplacer("cos")
+
+if langImports:
+
+    class Language:
+        def __init__(self, language):
+            self.language = language
+
+        def getLang(self):
+            return self.language
+        
+        def setLang(self, language):
+            self.language = language
+
+    language = Language("English")
+
+    def New():
+        language.setLang('Dutch')
+        currentLang = language.getLang()
+        print(f'Current language set to {currentLang}')
+    
+    def Current():
+        currentLang = language.getLang()
+        print(f'Current language setting is {currentLang}')
+
+    Current()
+    New()
+    Current()
+
+if dropDown:
+    import tkinter
+    from tkinter import ttk
+
+    main = tkinter.Tk()
+    main.title("Multiple Choice Listbox")
+    main.geometry("+50+150")
+    frame = ttk.Frame(main, padding=(3, 3, 12, 12))
+    frame.grid(column=0, row=0)
+
+    options = tkinter.StringVar()
+    options.set("var1 var2 var3 var4 var5 var6 var7 var8 var9 var10")
+
+    listView = tkinter.Listbox(frame, listvariable=options, selectmode='single', width=20, height=6)
+    listView.grid(column=0, row=0, columnspan=2)
+
+    def actionChoose():
+        printList = list()
+        selection = listView.curselection()
+        for i in selection:
+            listViewElement = listView.get(i)
+            printList.append(listViewElement)
+        for val in printList:
+            print(val)
+    buttonChoose = ttk.Button(frame, text="Pick", command=actionChoose)
+    buttonChoose.grid(column=1, row=1)
+
+    main.mainloop()
