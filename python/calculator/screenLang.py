@@ -4,9 +4,13 @@ import tkinter.messagebox as messagebox
 
 import re
 
-from variables import language, langList, loggedIn, filepath
+from variables import langList, loggedIn, filepath
 
 from variables import debugger
+
+from langControl import langFile
+
+langData = langFile.screenLang
 
 def saveLang(language):
     if loggedIn.getState():
@@ -31,12 +35,12 @@ def saveLang(language):
 def screenLangPickDef():
 
     screenLangPick = tkinter.Tk()
-    screenLangPick.title("Select Language")
+    screenLangPick.title(langData.Title)
     screenLangPick.geometry("150x200+600+300")
 
     def actionscreenLangPickExit():
         screenLangPick.destroy()
-    buttonscreenLangPickExit=ttk.Button(screenLangPick, text="Exit", command=actionscreenLangPickExit, width=5).place(x=98, y=0)
+    buttonscreenLangPickExit=ttk.Button(screenLangPick, text=langData.Buttons.Exit, command=actionscreenLangPickExit, width=5).place(x=98, y=0)
 
     optionString = ""
     i = 0
@@ -55,12 +59,12 @@ def screenLangPickDef():
         for i in selection:
             newLanguage = langOptions.get(i)
             if not newLanguage in langList:
-                messagebox.showinfo(title="Invalid Entry", message="You entered an unsupported language.\nIf you believe this to be an error, contact the developers.")
+                messagebox.showinfo(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.Message)
                 break
             saveLang(newLanguage)
-            messagebox.showinfo(title="Success", message=f"You changed your language to {language.getLang()}\nRestart the calculator for this to take effect.")
+            messagebox.showinfo(title=langData.Messageboxes.Success.Title, message=langData.Messageboxes.Success.Message)
             screenLangPick.destroy()
-    buttonChoose = ttk.Button(screenLangPick, text="Choose selected", command=actionChoose)
+    buttonChoose = ttk.Button(screenLangPick, text=langData.Buttons.Choose, command=actionChoose)
     buttonChoose.place(x=25, y=130)
 
     screenLangPick.mainloop()

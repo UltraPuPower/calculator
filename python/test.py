@@ -27,7 +27,9 @@ sinBug = False
 
 langImports = False
 
-dropDown = True
+dropDown = False
+
+importTests = True
 
 if loginCheck:
     users = [
@@ -327,8 +329,30 @@ if dropDown:
             listViewElement = listView.get(i)
             printList.append(listViewElement)
         for val in printList:
-            print(val)
+            debugger(val)
     buttonChoose = ttk.Button(frame, text="Pick", command=actionChoose)
     buttonChoose.grid(column=1, row=1)
 
     main.mainloop()
+
+if importTests:
+    from testPull import randomVar, text
+    print(randomVar) #Success
+    #print(text.randomVariable) Failure
+
+# by @LightWing at stackoverflow in "multi language support in python script"
+    from testPull import en
+    from types import SimpleNamespace
+
+    class NestedNamespace(SimpleNamespace):
+        def __init__(self, dictionary, **kwargs):
+            super().__init__(**kwargs)
+            for key, value in dictionary.items(): # Cycles through whole nested namespace
+                if isinstance(value, dict):
+                    self.__setattr__(key, NestedNamespace(value)) # Restarts function to cycle into deeper dicts
+                else:
+                    self.__setattr__(key, value) # adds dict value as value to the namespace
+
+    text = {}
+    text.update({"en": NestedNamespace(en)})
+    print(text['en'].menu.menu1) #works
