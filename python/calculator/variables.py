@@ -19,13 +19,13 @@ def debugger(message):
 
 class loginClass:
     def __init__(self, boolean):
-        self.language = boolean
+        self.logged = boolean
 
     def getState(self):
-        return self.language
+        return self.logged
     
     def setState(self, boolean):
-        self.language = boolean
+        self.logged = boolean
     
     def getUser(self):
         return self.username

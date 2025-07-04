@@ -15,12 +15,16 @@ from screenConstants import screenConstantsDef
 
 from screenLang import screenLangPickDef
 
+from langControl import langFile
+
+langData = langFile.screenCalculator
+
 print('Calculator running')
 
 def screenCalculatorDef():
 
     screenCalculator = tkinter.Tk()
-    screenCalculator.title("Calculator")
+    screenCalculator.title(langData.Title)
     screenCalculator.geometry("310x595+500+200")
 
     helperLines = False
@@ -40,8 +44,8 @@ def screenCalculatorDef():
     windowInputCalculatorView = tkinter.Entry(screenCalculator, width=47)
     windowInputCalculatorView.place(x=10, y=10)
 
-    ttk.Label(screenCalculator, text="Calculator by UltraPuPower1\ninspired by:\nCalculator by 刘键明", font=["Verdana", "9"]).place(x=5, y=210)
-    ttk.Label(screenCalculator, text="Answers might not be correct.\nUse at your own risk.\nV1.0", font=["Verdana", "7"]).place(x=5, y=550)
+    ttk.Label(screenCalculator, text=langData.Labels.Credits, font=["Verdana", "9"]).place(x=5, y=210)
+    ttk.Label(screenCalculator, text=langData.Labels.Disclaimer, font=["Verdana", "7"]).place(x=5, y=550)
     ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=1, y=65, height=135, width=5)
     ttk.Separator(screenCalculator, orient=tkinter.HORIZONTAL).place(x=2, y=65, height=5, width=195)
     ttk.Separator(screenCalculator, orient=tkinter.VERTICAL).place(x=195, y=65, height=135, width=5)
@@ -51,9 +55,9 @@ def screenCalculatorDef():
     windowOutputCalculator.place(x=10, y=30)
 
     def actionCalculatorClose():
-        messagebox.showinfo(title="Goodbye", message="Thank you for using the calculator.\nSee you next time!")
+        messagebox.showinfo(title=langData.Messageboxes.Close.Title, message=langData.Messageboxes.Close.Message)
         screenCalculator.destroy()
-    buttonCalculatorClose=ttk.Button(screenCalculator, text="Close", command=actionCalculatorClose, width=6).place(x=255, y=70)
+    buttonCalculatorClose=ttk.Button(screenCalculator, text=langData.Buttons.Close, command=actionCalculatorClose, width=6).place(x=255, y=70)
 
     def actionOne(): windowInputCalculatorView.insert("end", "1")
     buttonOne=ttk.Button(screenCalculator, text="1", command=actionOne, width=3).place(x=10, y=70)
@@ -170,17 +174,17 @@ def screenCalculatorDef():
     buttonSquareroot=ttk.Button(screenCalculator, text="√", command=actionSquareroot, width=3).place(x=160, y=170)
 
     def actionOpenVariables(): screenVariablesDef(windowInputCalculatorView, actionCalculate)
-    buttonVariables=ttk.Button(screenCalculator, text="Variables", command=actionOpenVariables, width=15).place(x=200, y=120)
+    buttonVariables=ttk.Button(screenCalculator, text=langFile.screenVariables.Title, command=actionOpenVariables, width=15).place(x=200, y=120)
     
     def actionOpenFunctions(): screenFunctionsDef(windowInputCalculatorView)
-    buttonFunctions=ttk.Button(screenCalculator, text="Functions", command=actionOpenFunctions, width=15).place(x=200, y=145)
+    buttonFunctions=ttk.Button(screenCalculator, text=langFile.screenFunctions.Title, command=actionOpenFunctions, width=15).place(x=200, y=145)
     
     def actionOpenConstants(): screenConstantsDef(windowInputCalculatorView)
-    buttonConstants=ttk.Button(screenCalculator, text="Constants", command=actionOpenConstants, width=15).place(x=200, y=170)
+    buttonConstants=ttk.Button(screenCalculator, text=langFile.screenConstants.Title, command=actionOpenConstants, width=15).place(x=200, y=170)
 
     if loggedIn.getState():    
         def actionOpenLangPicker(): screenLangPickDef()
-        buttonOpenLangPicker=ttk.Button(screenCalculator, text="Change Lang", command=actionOpenLangPicker, width=15).place(x=200, y=210)
+        buttonOpenLangPicker=ttk.Button(screenCalculator, text=langData.Buttons.ChangeLang, command=actionOpenLangPicker, width=15).place(x=200, y=210)
 
     if debugMode == True:
         def actionViewCheck():

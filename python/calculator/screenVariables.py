@@ -2,14 +2,18 @@ import tkinter
 
 from variables import storeA, storeB, storeC, storeD, storeE, storeF, storeG, storeH, storeI, storeJ, storeK, storeL, storeM, storeN, storeO, storeP, storeQ, storeR, storeS, storeT, storeU, storeV, storeW, storeX, storeY, storeZ
 
+from langControl import langFile
+
+langData = langFile.screenVariables
+
 def screenVariablesDef(inputWindowView, actionCalculate):
     screenVariables = tkinter.Tk()
-    screenVariables.title("Variables")
+    screenVariables.title(langData.Title)
     screenVariables.geometry("250x665+860+200")
 
     def actionScreenVariablesExit():
         screenVariables.destroy()
-    buttonScreenVariablesExit=tkinter.ttk.Button(screenVariables, text="Exit", command=actionScreenVariablesExit, width=5).place(x=200, y=0)
+    buttonScreenVariablesExit=tkinter.ttk.Button(screenVariables, text=langData.Buttons.Exit, command=actionScreenVariablesExit, width=5).place(x=200, y=0)
 
     textShowA = tkinter.ttk.Label(screenVariables, text="= "+str(storeA[0]), font=["Verdana", "7"])
     textShowA.place(x=85, y=15)
@@ -78,7 +82,7 @@ def screenVariablesDef(inputWindowView, actionCalculate):
     buttonTypeF=tkinter.ttk.Button(screenVariables, text="F", command=actionTypeF, width=2).place(x=60, y=135)
 
     #NOTE removed due to gravity
-    labelNoG = tkinter.ttk.Label(screenVariables, text="Due to conflicts G is no longer a variable", font=["Verdana", "7"]).place(x=10, y=160)
+    labelNoG = tkinter.ttk.Label(screenVariables, text=langData.Labels.Conflict, font=["Verdana", "7"]).place(x=10, y=160)
     # textShowG = tkinter.ttk.Label(screenVariables, text="= "+str(storeG[0]), font=["Verdana", "7"])
     # textShowG.place(x=85, y=165)
     # def actionStoreG():

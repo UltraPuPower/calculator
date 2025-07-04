@@ -8,6 +8,10 @@ from screenCalculator import screenCalculatorDef
 
 from variables import loggedIn, filepath
 
+from langControl import langFile
+
+langData = langFile.screenLogin
+
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
    hash_object = hashlib.sha256(password_bytes)
@@ -16,15 +20,15 @@ def passwordHash(password):
 def screenLoginDef(calculatorDef, welcomeDef):
 
     screenLogin = tkinter.Tk()
-    screenLogin.title("Login")
+    screenLogin.title(langData.Title)
     screenLogin.geometry("200x145+550+200")
 
-    tkinter.ttk.Label(screenLogin, text="Username").place(x=10, y=10)
+    tkinter.ttk.Label(screenLogin, text=langData.Labels.Name).place(x=10, y=10)
     usernameEntry = tkinter.Entry(screenLogin, width=29)
     usernameEntry.place(x=10, y=35)
     usernameEntry.focus()
 
-    tkinter.ttk.Label(screenLogin, text="Password").place(x=10, y=60)
+    tkinter.ttk.Label(screenLogin, text=langData.Labels.Key).place(x=10, y=60)
     passwordEntry = tkinter.Entry(screenLogin, width=29, show="•")
     passwordEntry.place(x=10, y=85)
 
@@ -52,23 +56,26 @@ def screenLoginDef(calculatorDef, welcomeDef):
         attemptUsername = usernameEntry.get()
         attemptPassword = passwordEntry.get()
 
-        if loadUser(attemptUsername, attemptPassword)[0]:
-            tkinter.messagebox.showinfo(title="Beware", message="The Calculator is in release 1.0.\nIf you experience any bugs, please contact the developers.")
+        UserArr = loadUser(attemptUsername, attemptPassword)
+
+        if UserArr[0]:
+            tkinter.messagebox.showinfo(title=langData.Messageboxes.Success.Title, message=langData.Messageboxes.Success.Message)
             loggedIn.setState(True)
+            loggedIn.setUser(attemptUsername)
             screenLogin.destroy()
             calculatorDef()
-        elif not loadUser(attemptUsername, attemptPassword)[0] and loadUser(attemptUsername, attemptPassword)[1]:
-            tkinter.messagebox.showerror(title="Error", message="Password did not match.")
+        elif UserArr[0] and UserArr[1]:
+            tkinter.messagebox.showerror(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.InvalidKey)
             passwordEntry.delete("0", "end")
         else:
-            tkinter.messagebox.showerror(title="Error", message="Username not found.")
+            tkinter.messagebox.showerror(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.NoAccount)
             usernameEntry.delete("0", "end")
             passwordEntry.delete("0", "end")
-    buttonLogin = tkinter.ttk.Button(screenLogin, text="Log in", command=validateLogin, width=10).place(x=120, y=110)
+    buttonLogin = tkinter.ttk.Button(screenLogin, text=langData.Buttons.Login, command=validateLogin, width=10).place(x=120, y=110)
 
     def actionReturn():
         screenLogin.destroy()
         welcomeDef(screenCalculatorDef)
-    buttonRegister = tkinter.ttk.Button(screenLogin, text="Return", command=actionReturn, width=10).place(x=10, y=110)
+    buttonRegister = tkinter.ttk.Button(screenLogin, text=langData.Buttons.Return, command=actionReturn, width=10).place(x=10, y=110)
 
     screenLogin.mainloop()

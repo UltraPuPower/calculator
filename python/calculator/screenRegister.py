@@ -6,6 +6,10 @@ from variables import filepath
 
 from screenCalculator import screenCalculatorDef
 
+from langControl import langFile
+
+langData = langFile.screenRegister
+
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
    hash_object = hashlib.sha256(password_bytes)
@@ -14,19 +18,19 @@ def passwordHash(password):
 def screenRegisterDef(welcomeDef):
 
     screenRegister = tkinter.Tk()
-    screenRegister.title("Register")
+    screenRegister.title(langData.Title)
     screenRegister.geometry("200x195+550+200")
 
-    tkinter.ttk.Label(screenRegister, text="Username").place(x=10, y=10)
+    tkinter.ttk.Label(screenRegister, text=langData.Labels.Name).place(x=10, y=10)
     usernameEntry = tkinter.Entry(screenRegister, width=29)
     usernameEntry.place(x=10, y=35)
     usernameEntry.focus()
 
-    tkinter.ttk.Label(screenRegister, text="Password").place(x=10, y=60)
+    tkinter.ttk.Label(screenRegister, text=langData.Labels.Key).place(x=10, y=60)
     passwordEntry1 = tkinter.Entry(screenRegister, width=29, show="•")
     passwordEntry1.place(x=10, y=85)
 
-    labelPassword2 = tkinter.ttk.Label(screenRegister, text="Repeat Password").place(x=10, y=110)
+    labelPassword2 = tkinter.ttk.Label(screenRegister, text=langData.Labels.RKey).place(x=10, y=110)
     passwordEntry2 = tkinter.Entry(screenRegister, width=29, show="•")
     passwordEntry2.place(x=10, y=135)
 
@@ -57,36 +61,36 @@ def screenRegisterDef(welcomeDef):
     def actionReturn():
         screenRegister.destroy()
         welcomeDef(screenCalculatorDef)
-    buttonRegister = tkinter.ttk.Button(screenRegister, text="Return", command=actionReturn, width=10).place(x=10, y=160)
+    buttonRegister = tkinter.ttk.Button(screenRegister, text=langData.Buttons.Return, command=actionReturn, width=10).place(x=10, y=160)
     
     def validateRegistry():
         attemptUsername = usernameEntry.get()
         attemptPassword1 = passwordEntry1.get()
         attemptPassword2 = passwordEntry2.get()
         if re.search(r"[^a-zA-Z0-9]", attemptUsername):
-            tkinter.messagebox.showerror(title="Error", message="Invalid username. Only alphanumeric characters are allowed.")
+            tkinter.messagebox.showerror(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.InvalidName)
             usernameEntry.delete("0", "end")
             passwordEntry1.delete("0", "end")
             passwordEntry2.delete("0", "end")
             return
         if re.search(r".*`.*", attemptPassword1) or re.search(r".*'.*", attemptPassword1) or re.search(r".*\".*", attemptPassword1):
-            tkinter.messagebox.showerror(title="Error", message="Invalid Password. Using quotes or backticks is not allowed.")
+            tkinter.messagebox.showerror(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.InvalidKey)
             passwordEntry1.delete("0", "end")
             passwordEntry2.delete("0", "end")
             return
         if not attemptPassword1 == attemptPassword2:
-            tkinter.messagebox.showerror(title="Error", message="Passwords are not identical.")
+            tkinter.messagebox.showerror(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.NonDoubleKey)
             passwordEntry1.delete("0", "end")
             passwordEntry2.delete("0", "end")
             return
         if checkUserName(attemptUsername):
-            tkinter.messagebox.showerror(title="Error", message="Username is already taken.")
+            tkinter.messagebox.showerror(title=langData.Messageboxes.Failure.Title, message=langData.Messageboxes.Failure.TakenName)
             usernameEntry.delete("0", "end")
             passwordEntry1.delete("0", "end")
             passwordEntry2.delete("0", "end")
             return
         saveUser(attemptUsername, attemptPassword1)
-        tkinter.messagebox.showinfo(title="Success", message="You have registered successfully.\nYou will be returned to the welcome screen.")
+        tkinter.messagebox.showinfo(title=langData.Messageboxes.Success.Title, message=langData.Messageboxes.Success.Message)
         screenRegister.destroy()
         welcomeDef(screenCalculatorDef)
-    buttonRegister = tkinter.ttk.Button(screenRegister, text="Register", command=validateRegistry, width=10).place(x=120, y=160)
+    buttonRegister = tkinter.ttk.Button(screenRegister, text=langData.Buttons.Register, command=validateRegistry, width=10).place(x=120, y=160)

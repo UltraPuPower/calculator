@@ -1,3 +1,5 @@
 python/calculator/accounts.json
+python/__pycache__/
 python/calculator/__pycache__/
+python/calculator/langData/__pycache__/
 notes.txt
