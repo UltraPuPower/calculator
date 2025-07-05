@@ -8,11 +8,11 @@ def langFileSearch(lang):
     target = lang.lower()
 
     try:
-        open(f"{filepath}\\lang\\{lang}.json")
+        open(f"{filepath}\\langData\\{lang}.py")
         debugger(f"succes, language support for {lang} was found")
         return True
     except:
-        debugger(f"Selected language ({lang}) is not available at {filepath}\\lang\\{lang}.json\nFalling back on English")
+        debugger(f"Selected language ({lang}) is not available at {filepath}\\langData\\{lang}.py\nFalling back on English")
         return False
 
 def loadUserLang(username):
@@ -33,9 +33,9 @@ def setLangPref():
     if loggedIn.getState():
         langPref = loadUserLang(loggedIn.getUser())
         debugger("Loaded Lang preference")
-        if langFileSearch(langPref):
+        if langFileSearch(langPref.lower()):
             language.setLang(langPref)
-            debugger("Lang preference integrated")
+            debugger(f"Lang preference integrated: {language.getLang()}")
             return
         debugger("Lang preference not found")
         return
@@ -43,6 +43,7 @@ def setLangPref():
 
 # by @LightWing at stackoverflow in "multi language support in python script"
 from langData.english import english
+from langData.nederlands import nederlands
 from types import SimpleNamespace
 
 class NestedNamespace(SimpleNamespace):
@@ -54,11 +55,6 @@ class NestedNamespace(SimpleNamespace):
             else:
                 self.__setattr__(key, value)
 
-langRData = {}
-langRData.update({"English": NestedNamespace(english)})
-
-setLangPref()
-
-chosenLang = language.getLang()
-
-langFile = langRData[chosenLang]
+langFile = {}
+langFile.update({"English": NestedNamespace(english)})
+langFile.update({"Nederlands": NestedNamespace(nederlands)})

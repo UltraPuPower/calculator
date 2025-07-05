@@ -4,13 +4,11 @@ import tkinter.messagebox as messagebox
 
 import re
 
-from variables import langList, loggedIn, filepath
+from variables import langList, loggedIn, filepath, language
 
 from variables import debugger
 
 from langControl import langFile
-
-langData = langFile.screenLang
 
 def saveLang(language):
     if loggedIn.getState():
@@ -28,11 +26,15 @@ def saveLang(language):
             userData = ""
             for line in lines:
                 userData += line
-            debugger(f'New User file:\n{userData}')
+            debugger(f'Adjusted User file generated')
             file.write(userData)
 
 
 def screenLangPickDef():
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenLang
 
     screenLangPick = tkinter.Tk()
     screenLangPick.title(langData.Title)
@@ -40,7 +42,7 @@ def screenLangPickDef():
 
     def actionscreenLangPickExit():
         screenLangPick.destroy()
-    buttonscreenLangPickExit=ttk.Button(screenLangPick, text=langData.Buttons.Exit, command=actionscreenLangPickExit, width=5).place(x=98, y=0)
+    buttonscreenLangPickExit=ttk.Button(screenLangPick, text=langData.Buttons.Exit, command=actionscreenLangPickExit, width=6).place(x=93, y=0)
 
     optionString = ""
     i = 0

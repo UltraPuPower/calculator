@@ -5,11 +5,15 @@ import tkinter.messagebox
 from screenLogin import screenLoginDef
 from screenRegister import screenRegisterDef
 
+from variables import language
+
 from langControl import langFile
 
-langData = langFile.screenWelcome
-
 def screenWelcomeDef(calculatorDef):
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenWelcome
 
     screenWelcome = tkinter.Tk()
     screenWelcome.title(langData.Title)

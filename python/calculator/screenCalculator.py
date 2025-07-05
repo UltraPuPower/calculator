@@ -4,7 +4,7 @@ import tkinter.messagebox as messagebox
 
 from calculations import actionCalculate
 
-from variables import valAnsView, insertListView, loggedIn
+from variables import valAnsView, insertListView, loggedIn, language
 from variables import debugger, debugMode
 
 from screenFunctions import screenFunctionsDef
@@ -16,12 +16,15 @@ from screenConstants import screenConstantsDef
 from screenLang import screenLangPickDef
 
 from langControl import langFile
-
-langData = langFile.screenCalculator
-
 print('Calculator running')
 
 def screenCalculatorDef():
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenCalculator
+
+    debugger(f"Current lang: {language.getLang()}")
 
     screenCalculator = tkinter.Tk()
     screenCalculator.title(langData.Title)
@@ -174,17 +177,17 @@ def screenCalculatorDef():
     buttonSquareroot=ttk.Button(screenCalculator, text="√", command=actionSquareroot, width=3).place(x=160, y=170)
 
     def actionOpenVariables(): screenVariablesDef(windowInputCalculatorView, actionCalculate)
-    buttonVariables=ttk.Button(screenCalculator, text=langFile.screenVariables.Title, command=actionOpenVariables, width=15).place(x=200, y=120)
+    buttonVariables=ttk.Button(screenCalculator, text=langFile[chosenLang].screenVariables.Title, command=actionOpenVariables, width=15).place(x=200, y=120)
     
     def actionOpenFunctions(): screenFunctionsDef(windowInputCalculatorView)
-    buttonFunctions=ttk.Button(screenCalculator, text=langFile.screenFunctions.Title, command=actionOpenFunctions, width=15).place(x=200, y=145)
+    buttonFunctions=ttk.Button(screenCalculator, text=langFile[chosenLang].screenFunctions.Title, command=actionOpenFunctions, width=15).place(x=200, y=145)
     
     def actionOpenConstants(): screenConstantsDef(windowInputCalculatorView)
-    buttonConstants=ttk.Button(screenCalculator, text=langFile.screenConstants.Title, command=actionOpenConstants, width=15).place(x=200, y=170)
+    buttonConstants=ttk.Button(screenCalculator, text=langFile[chosenLang].screenConstants.Title, command=actionOpenConstants, width=15).place(x=200, y=170)
 
     if loggedIn.getState():    
         def actionOpenLangPicker(): screenLangPickDef()
-        buttonOpenLangPicker=ttk.Button(screenCalculator, text=langData.Buttons.ChangeLang, command=actionOpenLangPicker, width=15).place(x=200, y=210)
+        buttonOpenLangPicker=ttk.Button(screenCalculator, text=langData.Buttons.ChangeLang, command=actionOpenLangPicker, width=15).place(x=200, y=235)
 
     if debugMode == True:
         def actionViewCheck():

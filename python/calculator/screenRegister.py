@@ -2,13 +2,11 @@ import tkinter
 import re
 import hashlib
 
-from variables import filepath
+from variables import filepath, language
 
 from screenCalculator import screenCalculatorDef
 
 from langControl import langFile
-
-langData = langFile.screenRegister
 
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
@@ -16,6 +14,10 @@ def passwordHash(password):
    return hash_object.hexdigest()
 
 def screenRegisterDef(welcomeDef):
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenRegister
 
     screenRegister = tkinter.Tk()
     screenRegister.title(langData.Title)

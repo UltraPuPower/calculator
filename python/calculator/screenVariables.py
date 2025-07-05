@@ -2,18 +2,23 @@ import tkinter
 
 from variables import storeA, storeB, storeC, storeD, storeE, storeF, storeG, storeH, storeI, storeJ, storeK, storeL, storeM, storeN, storeO, storeP, storeQ, storeR, storeS, storeT, storeU, storeV, storeW, storeX, storeY, storeZ
 
+from variables import language
+
 from langControl import langFile
 
-langData = langFile.screenVariables
-
 def screenVariablesDef(inputWindowView, actionCalculate):
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenVariables
+
     screenVariables = tkinter.Tk()
     screenVariables.title(langData.Title)
     screenVariables.geometry("250x665+860+200")
 
     def actionScreenVariablesExit():
         screenVariables.destroy()
-    buttonScreenVariablesExit=tkinter.ttk.Button(screenVariables, text=langData.Buttons.Exit, command=actionScreenVariablesExit, width=5).place(x=200, y=0)
+    buttonScreenVariablesExit=tkinter.ttk.Button(screenVariables, text=langData.Buttons.Exit, command=actionScreenVariablesExit, width=6).place(x=195, y=0)
 
     textShowA = tkinter.ttk.Label(screenVariables, text="= "+str(storeA[0]), font=["Verdana", "7"])
     textShowA.place(x=85, y=15)

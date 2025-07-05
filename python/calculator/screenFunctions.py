@@ -1,10 +1,14 @@
 import tkinter
 
+from variables import language
+
 from langControl import langFile
 
-langData = langFile.screenFunctions
-
 def screenFunctionsDef(inputWindowView):
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenFunctions
 
     screenFunctions = tkinter.Tk()
     screenFunctions.title(langData.Title)
@@ -13,7 +17,7 @@ def screenFunctionsDef(inputWindowView):
     tkinter.ttk.Label(screenFunctions, text=langData.Labels.Math).place(x=5, y=5)
     def actionScreenFunctionsExit():
         screenFunctions.destroy()
-    buttonScreenFunctionsExit=tkinter.ttk.Button(screenFunctions, text=langData.Buttons.Exit, command=actionScreenFunctionsExit, width=5).place(x=250, y=0)
+    buttonScreenFunctionsExit=tkinter.ttk.Button(screenFunctions, text=langData.Buttons.Exit, command=actionScreenFunctionsExit, width=6).place(x=245, y=0)
 
     def actionAcos(): inputWindowView.insert("end", "acos(")
     buttonSquareroot=tkinter.ttk.Button(screenFunctions, text="acos", command=actionAcos, width=5).place(x=5, y=25)

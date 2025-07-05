@@ -11,7 +11,7 @@ storeV = ['0']; storeW = ['0']; storeX = ['0']; storeY = ['0']; storeZ = ['0']
 
 insertListView = []
 
-debugMode = True
+debugMode = False
 
 def debugger(message):
     if debugMode == True:
@@ -48,4 +48,4 @@ class Language:
 
 language = Language("English")
 
-langList = ["English", "Dutch"]
+langList = ["English", "Nederlands"]
