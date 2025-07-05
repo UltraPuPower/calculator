@@ -1,10 +1,14 @@
 import tkinter
 
+from variables import language
+
 from langControl import langFile
 
-langData = langFile.screenConstants
-
 def screenConstantsDef(inputWindowView):
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenConstants
 
     screenConstants = tkinter.Tk()
     screenConstants.title(langData.Title)
@@ -19,7 +23,7 @@ def screenConstantsDef(inputWindowView):
     tkinter.ttk.Label(screenConstants, text=langData.Labels.Math).place(x=5, y=5)
     def actionScreenConstantsExit():
         screenConstants.destroy()
-    buttonScreenConstantsExit=tkinter.ttk.Button(screenConstants, text=langData.Buttons.Exit, command=actionScreenConstantsExit, width=5).place(x=250, y=0)
+    buttonScreenConstantsExit=tkinter.ttk.Button(screenConstants, text=langData.Buttons.Exit, command=actionScreenConstantsExit, width=6).place(x=245, y=0)
 
     def actionPi(): inputWindowView.insert("end", "π")
     buttonPi=tkinter.ttk.Button(screenConstants, text="π", command=actionPi, width=3).place(x=5, y=20)

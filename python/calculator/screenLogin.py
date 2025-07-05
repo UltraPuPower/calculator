@@ -6,11 +6,9 @@ import hashlib
 
 from screenCalculator import screenCalculatorDef
 
-from variables import loggedIn, filepath
+from variables import loggedIn, filepath, language
 
-from langControl import langFile
-
-langData = langFile.screenLogin
+from langControl import langFile, setLangPref
 
 def passwordHash(password):
    password_bytes = password.encode('utf-8')
@@ -18,6 +16,10 @@ def passwordHash(password):
    return hash_object.hexdigest()
 
 def screenLoginDef(calculatorDef, welcomeDef):
+
+    chosenLang = language.getLang()
+
+    langData = langFile[chosenLang].screenLogin
 
     screenLogin = tkinter.Tk()
     screenLogin.title(langData.Title)
@@ -62,6 +64,7 @@ def screenLoginDef(calculatorDef, welcomeDef):
             tkinter.messagebox.showinfo(title=langData.Messageboxes.Success.Title, message=langData.Messageboxes.Success.Message)
             loggedIn.setState(True)
             loggedIn.setUser(attemptUsername)
+            setLangPref()
             screenLogin.destroy()
             calculatorDef()
         elif UserArr[0] and UserArr[1]:
